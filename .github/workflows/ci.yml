@@ -1,14 +1,119 @@
-name: CI Pipeline
+name: Product Service CI
+
 
 on:
+
   push:
     branches:
       - main
       - testin
 
+
+  pull_request:
+    branches:
+      - main
+
+
+
 jobs:
-  verify:
+
+
+  build:
+
+
+    name: Build and Security Validation
+
+
     runs-on: ubuntu-latest
 
+
+    defaults:
+      run:
+        working-directory: product-service
+
+
+
     steps:
-      - run: echo "Workflow started"
+
+
+      #################################################
+      # 1. Checkout Source Code
+      #################################################
+
+      - name: Checkout Source
+        uses: actions/checkout@v4
+
+
+
+      # #################################################
+      # # 2. Setup Java Environment
+      # #################################################
+
+      # - name: Setup Java 25
+      #   uses: actions/setup-java@v4
+
+      #   with:
+      #     java-version: '25'
+      #     distribution: 'temurin'
+
+      #     # Automatically caches ~/.m2/repository
+      #     cache: maven
+
+
+
+      # #################################################
+      # # 3. Build Application
+      # #################################################
+
+      # - name: Maven Build
+      #   run: mvn clean compile
+
+
+
+      # #################################################
+      # # 4. Unit Testing
+      # #################################################
+
+      # - name: Run Unit Tests
+      #   run: mvn test
+
+
+
+      # #################################################
+      # # 5. Code Coverage
+      # #################################################
+
+      # - name: Generate Coverage Report
+      #   run: mvn jacoco:report
+
+
+
+      # #################################################
+      # # 6. SonarQube Code Quality Analysis
+      # #################################################
+
+      # - name: SonarQube Analysis
+      #   run: |
+
+      #     mvn sonar:sonar \
+      #     -Dsonar.projectKey=product-service \
+      #     -Dsonar.host.url=${{ secrets.SONAR_URL }} \
+      #     -Dsonar.token=${{ secrets.SONAR_TOKEN }}
+
+
+
+      # #################################################
+      # # 7. Dependency Vulnerability Scan
+      # #################################################
+
+      # - name: Dependency Check
+      #   run: mvn dependency-check:check
+
+
+
+      # #################################################
+      # # 8. Secret Detection
+      # #################################################
+
+      # - name: Secret Scan - GitLeaks
+      #   uses: gitleaks/gitleaks-action@v2
