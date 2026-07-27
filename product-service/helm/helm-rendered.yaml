@@ -1,0 +1,119 @@
+---
+# Source: product-service/templates/secret.yaml
+apiVersion: v1
+kind: Secret
+
+metadata:
+  name: product-service-secret
+
+type: Opaque
+
+stringData:
+  SPRING_DATASOURCE_USERNAME: "postgres"
+  SPRING_DATASOURCE_PASSWORD: "2396"
+---
+# Source: product-service/templates/configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: product-service-config
+
+data:
+  SPRING_DATASOURCE_URL: "jdbc:postgresql://postgres:5432/productdb"
+  SPRING_PROFILES_ACTIVE: "prod"
+---
+# Source: product-service/templates/product-service.yaml
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: product-service
+  labels:
+    helm.sh/chart: product-service-0.1.0
+    app.kubernetes.io/name: product-service
+    app.kubernetes.io/instance: product-service
+    app.kubernetes.io/version: "1.16.0"
+    app.kubernetes.io/managed-by: Helm
+
+spec:
+  type: ClusterIP
+
+  selector:
+    app: product-service
+
+  ports:
+    - port: 8080
+      targetPort: 8080
+      protocol: TCP
+---
+# Source: product-service/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: product-service
+  labels:
+    helm.sh/chart: product-service-0.1.0
+    app.kubernetes.io/name: product-service
+    app.kubernetes.io/instance: product-service
+    app.kubernetes.io/version: "1.16.0"
+    app.kubernetes.io/managed-by: Helm
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: product-service
+
+  template:
+    metadata:
+      labels:
+        app: product-service
+
+    spec:
+      containers:
+        - name: product-service
+
+          image: "k3d-local-registry:5000/product-service:v1"
+          imagePullPolicy: IfNotPresent
+
+          ports:
+            - containerPort: 8080
+
+          envFrom:
+            - configMapRef:
+                name: product-service-config
+            - secretRef:
+                name: product-service-secret
+
+          resources:
+            {}
+
+          startupProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            timeoutSeconds: 2
+            failureThreshold: 30
+
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 2
+            failureThreshold: 3
+
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: 8080
+            initialDelaySeconds: 20
+            periodSeconds: 5
+            timeoutSeconds: 2
+            successThreshold: 1
+            failureThreshold: 3
