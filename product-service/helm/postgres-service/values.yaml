@@ -1,0 +1,19 @@
+postgres:
+
+  replicaCount: 1
+
+  image:
+    repository: postgres
+    tag: "16"
+
+  port: 5432
+
+  database: productdb
+
+  username: postgres
+
+  password: password
+
+  service:
+    name: postgres
+    type: ClusterIP
