@@ -1,0 +1,22 @@
+database:
+  type: postgresql
+
+postgresql:
+  enabled: false
+
+jdbcOverwrite:
+  enable: true
+  jdbcUrl: jdbc:postgresql://postgres.default.svc.cluster.local:5432/sonarqube
+  jdbcUsername: sonar
+  jdbcPassword: sonarpassword
+
+
+persistence:
+  enabled: true
+  size: 10Gi
+
+
+service:
+  type: ClusterIP
+
+

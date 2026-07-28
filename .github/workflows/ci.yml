@@ -102,18 +102,18 @@ jobs:
 
 
 
-      # #################################################
-      # # 7. Dependency Vulnerability Scan
-      # #################################################
+      #################################################
+      # 7. Dependency Vulnerability Scan
+      #################################################
 
-      # - name: Dependency Check
-      #   run: mvn dependency-check:check
+      - name: Dependency Check
+        run: mvn dependency-check:check
 
 
 
-      # #################################################
-      # # 8. Secret Detection
-      # #################################################
+      #################################################
+      # 8. Secret Detection
+      #################################################
 
-      # - name: Secret Scan - GitLeaks
-      #   uses: gitleaks/gitleaks-action@v2
+      - name: Secret Scan - GitLeaks
+        uses: gitleaks/gitleaks-action@v2
