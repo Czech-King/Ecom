@@ -94,22 +94,22 @@ jobs:
       #     mvn org.owasp:dependency-check-maven:12.1.0:check \
       #     -DnvdApiKey=${{ secrets.NVD_API_KEY }}
 
-  gitleaks:
-    name: Secret Scan
-    needs: build
-    if: always()
-    runs-on: ubuntu-latest
+  # gitleaks:
+  #   name: Secret Scan
+  #   needs: build
+  #   if: always()
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout Source
-        uses: actions/checkout@v4
+  #   steps:
+  #     - name: Checkout Source
+  #       uses: actions/checkout@v4
+
+  #     - name: Secret Scan - GitLeaks
+  #       uses: gitleaks/gitleaks-action@v2
+
+      #################################################
+      # 7. Secret Detection
+      #################################################
 
       - name: Secret Scan - GitLeaks
         uses: gitleaks/gitleaks-action@v2
-
-      # #################################################
-      # # 7. Secret Detection
-      # #################################################
-
-      # - name: Secret Scan - GitLeaks
-      #   uses: gitleaks/gitleaks-action@v2
