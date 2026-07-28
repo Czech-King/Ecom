@@ -113,3 +113,6 @@ jobs:
 
       - name: Secret Scan - GitLeaks
         uses: gitleaks/gitleaks-action@v2
+
+      - name: Generate SBOM
+        run: mvn cyclonedx:makeBom
