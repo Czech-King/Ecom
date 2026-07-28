@@ -8,7 +8,6 @@ on:
       - main
       - testin
 
-
   pull_request:
     branches:
       - main
@@ -17,12 +16,9 @@ on:
 
 jobs:
 
-
   build:
 
-
     name: Build and Security Validation
-
 
     runs-on: ubuntu-latest
 
@@ -30,7 +26,6 @@ jobs:
     defaults:
       run:
         working-directory: product-service
-
 
 
     steps:
@@ -51,18 +46,29 @@ jobs:
 
       - name: Setup Java 25
         uses: actions/setup-java@v4
-
         with:
           java-version: '25'
           distribution: 'temurin'
-
-          # Automatically caches ~/.m2/repository
           cache: maven
 
 
 
       #################################################
-      # 3. Build Application
+      # 3. Cache OWASP Dependency Check Database
+      #################################################
+
+      - name: Cache OWASP Dependency Check Database
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository/org/owasp/dependency-check-data
+          key: dependency-check-db-${{ runner.os }}
+          restore-keys: |
+            dependency-check-db-
+
+
+
+      #################################################
+      # 4. Maven Build
       #################################################
 
       - name: Maven Build
@@ -71,7 +77,7 @@ jobs:
 
 
       #################################################
-      # 4. Unit Testing
+      # 5. Unit Testing
       #################################################
 
       - name: Run Unit Tests
@@ -79,40 +85,19 @@ jobs:
 
 
 
-      # #################################################
-      # # 5. Code Coverage
-      # #################################################
-
-      # - name: Generate Coverage Report
-      #   run: mvn jacoco:report
-
-
-
-      # #################################################
-      # # 6. SonarQube Code Quality Analysis
-      # #################################################
-
-      # - name: SonarQube Analysis
-      #   run: |
-
-      #     mvn sonar:sonar \
-      #     -Dsonar.projectKey=product-service \
-      #     -Dsonar.host.url=${{ secrets.SONAR_URL }} \
-      #     -Dsonar.token=${{ secrets.SONAR_TOKEN }}
-
-
-
       #################################################
-      # 7. Dependency Vulnerability Scan
+      # 6. OWASP Dependency Vulnerability Scan
       #################################################
 
       - name: Dependency Check
-        run: mvn dependency-check:check
+        run: |
+          mvn dependency-check:check \
+          -DnvdApiKey=${{ secrets.NVD_API_KEY }}
 
 
 
       #################################################
-      # 8. Secret Detection
+      # 7. Secret Detection
       #################################################
 
       - name: Secret Scan - GitLeaks

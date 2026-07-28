@@ -22,6 +22,7 @@
         <java.version>25</java.version>
     </properties>
 
+
     <dependencies>
 
         <!-- Resilience4j -->
@@ -116,16 +117,37 @@
 
 
             <!-- OWASP Dependency Check -->
-            <plugin>
-                <groupId>org.owasp</groupId>
-                <artifactId>dependency-check-maven</artifactId>
-                <version>12.1.0</version>
+<plugin>
+    <groupId>org.owasp</groupId>
+    <artifactId>dependency-check-maven</artifactId>
+    <version>12.1.0</version>
 
-                <configuration>
-                    <failBuildOnCVSS>7</failBuildOnCVSS>
-                </configuration>
+    <configuration>
 
-            </plugin>
+        <!-- Do not download NVD database every CI run -->
+        <autoUpdate>false</autoUpdate>
+
+        <!-- Fail build only for high severity vulnerabilities -->
+        <failBuildOnCVSS>7</failBuildOnCVSS>
+
+        <!-- Ignore development files -->
+        <skipTestScope>true</skipTestScope>
+
+        <!-- Generate reports -->
+        <formats>
+            <format>HTML</format>
+            <format>JSON</format>
+        </formats>
+
+        <!-- Exclude unnecessary folders -->
+        <suppressionFiles>
+            <suppressionFile>
+                dependency-check-suppressions.xml
+            </suppressionFile>
+        </suppressionFiles>
+
+    </configuration>
+</plugin>
 
         </plugins>
     </build>
