@@ -113,7 +113,6 @@ jobs:
         uses: gitleaks/gitleaks-action@v2
 
       - name: Generate SBOM
-        working-directory: product-service
         run: mvn cyclonedx:makeBom
 
       - name: Upload SBOM
@@ -124,3 +123,6 @@ jobs:
 
       - name: Show current directory
         run: pwd
+
+      - name: Build Docker Image
+        run: docker build -t product-service:${{ github.sha }} .
