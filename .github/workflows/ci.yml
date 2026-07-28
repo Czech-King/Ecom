@@ -126,3 +126,7 @@ jobs:
 
       - name: Build Docker Image
         run: docker build -t product-service:${{ github.sha }} .
+
+      - name: Import Image into k3d Cluster
+        run: |
+          k3d image import product-service:${{ github.sha }} -c mycluster
