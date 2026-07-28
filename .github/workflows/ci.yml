@@ -1,6 +1,4 @@
 name: Product Service CI
-
-
 on:
 
   push:
@@ -115,10 +113,14 @@ jobs:
         uses: gitleaks/gitleaks-action@v2
 
       - name: Generate SBOM
+        working-directory: product-service
         run: mvn cyclonedx:makeBom
 
       - name: Upload SBOM
         uses: actions/upload-artifact@v4
         with:
           name: sbom
-          path: target/bom.json
+          path: product-service/target/bom.json
+
+      - name: Show current directory
+        run: pwd
