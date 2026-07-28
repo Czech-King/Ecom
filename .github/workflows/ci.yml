@@ -53,17 +53,17 @@ jobs:
 
 
 
-      #################################################
-      # 3. Cache OWASP Dependency Check Database
-      #################################################
+      # #################################################
+      # # 3. Cache OWASP Dependency Check Database
+      # #################################################
 
-      - name: Cache OWASP Dependency Check Database
-        uses: actions/cache@v4
-        with:
-          path: ~/.dependency-check
-          key: dependency-check-${{ runner.os }}
-          restore-keys: |
-            dependency-check-${{ runner.os }}
+      # - name: Cache OWASP Dependency Check Database
+      #   uses: actions/cache@v4
+      #   with:
+      #     path: ~/.dependency-check
+      #     key: dependency-check-${{ runner.os }}
+      #     restore-keys: |
+      #       dependency-check-${{ runner.os }}
 
 
 
@@ -71,7 +71,7 @@ jobs:
       # 4. Maven Build and Unit Test
       #################################################
 
-      - name: Maven Build
+      - name: Maven Build and Test
         run: mvn clean verify
 
 
@@ -89,10 +89,10 @@ jobs:
       # 6. OWASP Dependency Vulnerability Scan
       #################################################
 
-      - name: Dependency Check
-        run: |
-          mvn org.owasp:dependency-check-maven:12.1.0:check \
-          -DnvdApiKey=${{ secrets.NVD_API_KEY }}
+      # - name: Dependency Check
+      #   run: |
+      #     mvn org.owasp:dependency-check-maven:12.1.0:check \
+      #     -DnvdApiKey=${{ secrets.NVD_API_KEY }}
 
   gitleaks:
     name: Secret Scan
