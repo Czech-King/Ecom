@@ -125,7 +125,7 @@
     <configuration>
 
         <!-- Do not download NVD database every CI run -->
-        <autoUpdate>false</autoUpdate>
+        <autoUpdate>true</autoUpdate>
 
         <!-- Fail build only for high severity vulnerabilities -->
         <failBuildOnCVSS>7</failBuildOnCVSS>
