@@ -123,7 +123,7 @@
     <version>12.1.0</version>
 
     <configuration>
-
+        <dataDirectory>${user.home}/.dependency-check</dataDirectory>
         <!-- Do not download NVD database every CI run -->
         <autoUpdate>true</autoUpdate>
 

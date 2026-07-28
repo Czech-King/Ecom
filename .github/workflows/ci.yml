@@ -60,28 +60,28 @@ jobs:
       - name: Cache OWASP Dependency Check Database
         uses: actions/cache@v4
         with:
-          path: ~/.m2/repository/org/owasp/dependency-check-data
-          key: dependency-check-db-${{ runner.os }}
+          path: ~/.dependency-check
+          key: dependency-check-${{ runner.os }}
           restore-keys: |
-            dependency-check-db-
+            dependency-check-${{ runner.os }}
 
 
 
       #################################################
-      # 4. Maven Build
+      # 4. Maven Build and Unit Test
       #################################################
 
       - name: Maven Build
-        run: mvn clean compile
+        run: mvn clean verify
 
 
 
-      #################################################
-      # 5. Unit Testing
-      #################################################
+      # #################################################
+      # # 5. Unit Testing
+      # #################################################
 
-      - name: Run Unit Tests
-        run: mvn test
+      # - name: Run Unit Tests
+      #   run: mvn test
 
 
 
@@ -91,7 +91,7 @@ jobs:
 
       - name: Dependency Check
         run: |
-          mvn dependency-check:check \
+          mvn org.owasp:dependency-check-maven:12.1.0:check \
           -DnvdApiKey=${{ secrets.NVD_API_KEY }}
 
 
