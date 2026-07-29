@@ -8,7 +8,7 @@ jobs:
     name: Deploy Product Service
     runs-on:
       - self-hosted
-      - k3d
+
 
     defaults:
       run:
