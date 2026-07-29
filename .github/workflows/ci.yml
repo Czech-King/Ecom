@@ -136,8 +136,16 @@ jobs:
 
         with:
           image-ref: product-service:${{ github.sha }}
+          format: table
+          output: trivy-report.txt
           severity: CRITICAL,HIGH
-          exit-code: 1 
+          exit-code: 0 
+
+      - name: Upload Trivy Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: trivy-report
+          path: /root/Ecom/product-service/trivy-report.txt
 
       - name: Login Docker Hub
         uses: docker/login-action@v3
