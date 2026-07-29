@@ -154,6 +154,13 @@ jobs:
             --exit-code 0 \
             ${{ secrets.DOCKERHUB_USERNAME }}/product-service:${{ github.sha }}
 
+
+      - name: Check Trivy report
+        run: |
+          echo "Workspace: $GITHUB_WORKSPACE"
+          pwd
+          find $GITHUB_WORKSPACE -name "trivy*" -type f
+
       # - name: Upload Trivy Report
       #   if: always()
       #   uses: actions/upload-artifact@v4
