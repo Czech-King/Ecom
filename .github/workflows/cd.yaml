@@ -1,0 +1,62 @@
+name: Product Service CD
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy Product Service
+    runs-on:
+      - self-hosted
+      - k3d
+
+    defaults:
+      run:
+        working-directory: product-service
+
+    steps:
+      #################################################
+      # 1. Checkout Source Code
+      #################################################
+
+      - name: Checkout Source
+        uses: actions/checkout@v4
+
+      #################################################
+      # 2. Setup Helm
+      #################################################
+
+      - name: Setup Helm
+        uses: azure/setup-helm@v4
+
+      - name: Verify Helm
+        run: helm version
+
+      #################################################
+      # 3. Setup kubectl
+      #################################################
+
+      - name: Setup kubectl
+        uses: azure/setup-kubectl@v4
+
+      - name: Verify kubectl
+        run: kubectl version --client
+
+      #################################################
+      # 4. Configure kubeconfig
+      #################################################
+
+      - name: Configure kubeconfig
+        run: |
+          mkdir -p ~/.kube
+          cp /root/.config/k3d/kubeconfig-mycluster.yaml ~/.kube/config
+          chmod 600 ~/.kube/config
+
+      #################################################
+      # 5. Verify Kubernetes Connectivity
+      #################################################
+
+      - name: Verify Kubernetes Connection
+        run: |
+          kubectl cluster-info
+          kubectl get nodes

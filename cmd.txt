@@ -1,500 +1,500 @@
-  189  kubectl get po -w
-  190  kubectl get po -w
-  191  kubectl get po 
-  192  kubectl get po 
-  193  kubectl get po 
-  194  kubectl get po 
-  195  kubectl rollout status deployment/product-service
-  196  kubectl get po 
-  197  kubectl logs product-service-5bd857788d-pn6tz
-  198  kubectl get po 
-  199  kubectl get po 
-  200  helm list
-  201  k3d cluster list
-  202  k3d cluster start mycluster
-  203  kubectl get po
-  204  history
-  205  export KUBECONFIG=/root/.config/k3d/kubeconfig-mycluster.yaml
-  206  history
-  207  kubectl get po
-  208  kubectl get svc
-  209  kubectl get po -o wide
-  210  kubectl get po
-  211  kubectl get svc
-  212  kubectl get endpoints
-  213  helm get values
-  214  helm get values product-service
-  215  helm get values postgres-service
-  216  helkm get manifest
-  217  helm get manifest
-  218  helm get manifest product-service
-  219  ls
-  220  helm get values product-service -all
-  221  helm get values product-service -al
-  222  helm get values product-service
-  223  helm show values
-  224  helm show values product-service
-  225  helm show values postgres-service
-  226  helm show values ./product-service
-  227  cd product-service/
-  228  ls
-  229  helm show values 
-  230  helm list\
-  231  helm list
-  232  helm show values product-service-0.1.0
-  233  cd ..
-  234  cd ..
-  235  cd ecommerce/
-  236  cd ..
-  237  cd Ecom/
-  238  ls\
-  239  ls
-  240  cd product-service/
-  241  ls
-  242  helm install helm/product-service --dry-run --debug
-  243  helm install product-service helm/product-service --dry-run --debug
-  244  helm show values helm/product-service
-  245  helm show values helm/postgres-service/
-  246  cd ..
-  247  k3d cluster stop mycluster
-  248  wsl --shutdown
-  249  ls
-  250  cd Ecom/
-  251  ls
-  252  git status
-  253  git commit -m "Uploaded"
-  254  cd product-service/
-  255  ;s
-  256  ls
-  257  cd ..
-  258  git add .
-  259  git branch
-  260  gti checkout develop
-  261  git checkout develop
-  262  git origin
-  263  gti branch -d
-  264  git remote add origin https://github.com/Czech-King/Ecom.git
-  265  git branch
-  266  git push origin develop
-  267  git fetch origin
-  268  git branch
-  269  git branch -r
-  270  git branch
-  271  git push origin main:develop
-  272  git checkout -b testin
-  273  git push -u origin testing
-  274  git branch
-  275  git push -u origin testin
-  276  cd product-service/
-  277  ls
-  278  git add .
-  279  git commit -m "helm"
-  280  git branch
-  281  git push -u origin testin
-  282  wsl --shutdown
-  283  exit
-  284  sudo -i
-  285  exit
-  286  ls
-  287  cd Ecom/
-  288  mkdir -p .github/workflows
-  289  touch .github/workflows/ci.yml
-  290  echo 'name: CI Pipeline
-  291  on:
-  292    push:
-  293      branches:
-  294        - main
-  295  jobs:
-  296    verify:
-  297      runs-on: ubuntu-latest
-  298      steps:
-  299        - run: echo "Workflow started"' > 
-  300  echo 'name: CI Pipeline
-  301  on:
-  302    push:
-  303      branches:
-  304        - main
-  305  jobs:
-  306    verify:
-  307      runs-on: ubuntu-latest
-  308      steps:
-  309        - run: echo "Workflow started"' >.github/workflows/ci.yml 
-  310  cat .github/workflows/ci.yml 
-  311  ls
-  312  cd ..
-  313  ls
-  314  cd Ecom/
-  315  ls
-  316  cd product-service/
-  317  ls
-  318  c ..
-  319  cd ..
-  320  ls -la
-  321  git checkout testin
-  322  git add .
-  323  git commit -m "action"
-  324  git push origin testin
-  325  git fetch testin
-  326  git branch
-  327  git pull orgin testin
-  328  git branch -r
-  329  git checkout -r testin
-  330  git push orgin testin
-  331  ls
-  332  ls -la
-  333  git status
-  334  git chgecout testin
-  335  git status
-  336  git push origin testin
-  337  git log --oneline --graph --decorate --all -10
-  338  git pull --rebase origin testin
-  339  git push origin testin
-  340  sudo -i
-  341  find .github -type f
-  342  cd Ecom/
-  343  find .github -type f
-  344  git status
-  345  git log --oneline -5
-  346  .github/workflows/
-  347  cd .github/workflows/
-  348  nano ci.yml 
-  349  git add .
-  350  git commit -m "testin"
-  351  git push origin testin
-  352  git push origin testin
-  353  cd ...\
-  354  git status
-  355  git push origin testin
-  356  exit
-  357  sudo -i
-  358  exit\
-  359  exit
-  360  git status
-  361  git add .
-  362  git commit -m "1stcommit"
-  363  git commit -m "1stcommit"
-  364  git push origin testin
-  365  git add .
-  366  git commit -m "mvn commit"
-  367  git push origin testin
-  368  git add .
-  369  git commit -m "mvn compile"
-  370  git push origin testin
-  371  git add .
-  372  git commit -m "mvn test"
-  373  git push origin testin
-  374  ls
-  375  cd product-service/
-  376  cd ..
-  377  helm repo add sonarqube https://SonarSource.github.io/helm-chart-sonarqube
-  378  helm repo ad bitnami
-  379  helm repo add bitnami
-  380  helm repo add sonarqube https://SonarSource.github.io/helm-chart-sonarqube
-  381  helm repo update
-  382  helm repo update
-  383  helm repo remove sonarqube
-  384  helm repo add sonarqube https://SonarSource.github.io/helm-chart-sonarqube
-  385  cd ~
-  386  wget https://github.com/SonarSource/helm-chart-sonarqube/archive/refs/heads/master.zip
-  387  unzip master.zip
-  388  cd helm-chart-sonarqube-master/charts/sonarqube
-  389  helm install sonarqube .   --namespace sonarqube   --create-namespace
-  390  k3d cluster start mycluster
-  391  helm install sonarqube .   --namespace sonarqube   --create-namespace
-  392  kubectl get no
-  393  kubectl get po
-  394  history
-  395  export KUBECONFIG=/root/.config/k3d/kubeconfig-mycluster.yamlexport KUBECONFIG=/root/.config/k3d/kubeconfig-mycluster.yaml
-  396  export KUBECONFIG=/root/.config/k3d/kubeconfig-mycluster.yaml
-  397  kubectl get po
-  398  helm install sonarqube .   --namespace sonarqube   --create-namespace
-  399  helm install sonarqube . --namespace sonarqube --create-namespace
-  400  sudo -0i
-  401  sudo -i
-  402  ls
-  403  rm -r helm-chart-sonarqube-master
-  404  helm repo add sonarqube https://SonarSource.github.io/helm-chart-sonarqube
-  405  helm repo update
-  406  helm search repo sonarqube
-  407  kubectl create namespace sonarqube
-  408  kubectl get po
-  409  ls
-  410  cd Ecom/
-  411  ls
-  412  kubectl get po
-  413  git status
-  414  export KUBECONFIG=/root/.config/k3d/kubeconfig-mycluster.yaml
-  415  kubectl get po
-  416  export KUBECONFIG=/root/.config/k3d/kubeconfig-mycluster.yaml
-  417  kubectl create namespace sonarqube
-  418  helm install sonarqube sonarqube/sonarqube -n sonarqube
-  419  helm install sonarqube sonarqube/sonarqube   -n sonarqube   --create-namespace   --set monitoringPasscode="admin"
-  420  helm install sonarqube sonarqube/sonarqube   -n sonarqube   --create-namespace   --set community.enabled=true   --set monitoringPasscode="admin"
-  421  helm list -n sonarqube
-  422  kubectl get pods -n sonarqube
-  423  kubectl get pods -n sonarqube
-  424  kubectl get pods -n sonarqube -w
-  425  export POD_NAME=$(kubectl get pods --namespace sonarqube -l "app=sonarqube,release=sonarqube" -o jsonpath="{.items[0].metadata.name}")
-  426  kubectl get pods -n sonarqube -w
-  427  kubectl describe pod sonarqube-sonarqube-0 -n sonarqube
-  428  kubectl get pods -n sonarqube -w
-  429  kubectl describe pod sonarqube-sonarqube-0 -n sonarqube
-  430  kubectl describe pod sonarqube-sonarqube-0 -n sonarqube
-  431  helm search repo sonarqube
-  432  kubectl describe pod sonarqube-sonarqube-0 -n sonarqube
-  433  kubectl get pods -n sonarqube -w
-  434  kubectl describe pod sonarqube-sonarqube-0 -n sonarqube
-  435  kubectl get pods -n sonarqube -w
-  436  kubectl logs sonarqube-sonarqube-0
-  437  kubectl logs sonarqube-sonarqube-0 -n sonarqube
-  438  helm uninstall sonarqube -n sonarqube
-  439  kubectl get po -n sonarqube
-  440  helm search repo sonarqube
-  441  helm install sonarqube sonarqube/sonarqube -n sonarqube
-  442  helm install sonarqube sonarqube/sonarqube -n sonarqube --set monitoringPasscode="admin"
-  443  helm install sonarqube sonarqube/sonarqube -n sonarqube --set monitoringPasscode="admin" --set community.enabled=true --set edition=""
-  444  export POD_NAME=$(kubectl get pods --namespace sonarqube -l "app=sonarqube,release=sonarqube" -o jsonpath="{.items[0].metadata.name}")
-  445  kubectl get po -n sonarqube
-  446  kubectl get po -n sonarqube -w
-  447  kubectl logs sonarqube-sonarqube-0 -n sonarqube
-  448  kubectl get po -n sonarqube -w
-  449  kubectl describe po sonarqube-sonarqube-0 -n sonarqube
-  450  Events:
-  451    Type     Reason     Age               From               Message
-  452    ----     ------     ----              ----               -------
-  453    Normal   Scheduled  79s               default-scheduler  Successfully assigned sonarqube/sonarqube-sonarqube-0 to k3d-mycluster-server-0
-  454    Normal   Pulled     77s               kubelet            spec.initContainers{init-sysctl}: Container image "sonarqube:26.7.0.124771-community" already present on machine and can be accessed by the pod
-  455    Normal   Created    76s               kubelet            spec.initContainers{init-sysctl}: Container created
-  456    Normal   Started    75s               kubelet            spec.initContainers{init-sysctl}: Container started
-  457    Normal   Pulled     74s               kubelet            spec.containers{sonarqube}: Container image "sonarqube:26.7.0.124771-community" already present on machine and can be accessed by the pod
-  458    Normal   Created    73s               kubelet            spec.containers{sonarqube}: Container created
-  459    Normal   Started    73s               kubelet            spec.containers{sonarqube}: Container started
-  460    Warning  Unhealthy  9s (x4 over 39s)  kubelet            spec.containers{sonarqube}: Startup probe failed: Get "http://10.42.0.56:9000/api/system/status": dial tcp 10.42.0.56:9000: connect: connection refused
-  461  kubectl logs -n sonarqube sonarqube-sonarqube-0
-  462  kubectl get pods -n sonarqube -w
-  463  kubectl logs -n sonarqube sonarqube-sonarqube-0 --tail=100
-  464  kubectl get pods -n sonarqube -w
-  465  kubectl logs -f -n sonarqube sonarqube-sonarqube-0
-  466  kubectl logs -f -n sonarqube sonarqube-sonarqube-0
-  467  kubectl get pods -n sonarqube -w
-  468  kubectl logs -f -n sonarqube sonarqube-sonarqube-0
-  469  kubectl get pods -n sonarqube -w
-  470  kubectl logs -f -n sonarqube sonarqube-sonarqube-0
-  471  kubectl logs -f -n sonarqube sonarqube-sonarqube-0
-  472  kubectl get pods -n sonarqube -w
-  473  helm repo remove sonarqube/sonarqube
-  474  kubectl get pods -n sonarqube -w
-  475  kubectl delete pod sonarqube-sonarqube-0
-  476  kubectl delete pod sonarqube-sonarqube-0 -n sonarqube
-  477  kubectl delete pod sonarqube-sonarqube-0 -n sonarqube
-  478  kubectl get pods -n sonarqube -w
-  479  hel list
-  480  helm list
-  481  kubectl get pods -n sonarqube -w
-  482  kubectl get deploy
-  483  kubectl delete ns sonarqube
-  484  kubectl get pods -n sonarqube -w
-  485  kubectl get pods -n sonarqube -w
-  486  kubectl get all
-  487  kubectl get all
-  488  kubectl get ns\
-  489  kubectl get ns
-  490  kubectl get pods -n sonarqube -w
-  491  k3d cluster stop sonarqube
-  492  k3d cluster stop mycluster
-  493  k3d cluster start mycluster
-  494  kubectl get ns
-  495  export POD_NAME=$(kubectl get pods --namespace sonarqube -l "app=sonarqube,release=sonarqube" -o jsonpath="{.items[0].metadata.name}")
-  496  export KUBECONFIG=/root/.config/k3d/kubeconfig-mycluster.yaml
-  497  kubectl get ns
-  498  kubectl create namespace sonarqube
-  499  helm repo add sonarqube https://SonarSource.github.io/helm-chart-sonarqube
-  500  curl -I https://SonarSource.github.io/helm-chart-sonarqube/index.yaml
-  501  helm repo add sonarqube https://SonarSource.github.io/helm-chart-sonarqube --debug
-  502  helm install sonarqube sonarqube/sonarqube   -n sonarqube   -f values.yaml
-  503  helm install sonarqube sonarqube/sonarqube   -n sonarqube   -f values.yaml
-  504  helm install sonarqube sonarqube/sonarqube   -n sonarqube   -f values.yaml .
-  505  helm install sonarqube sonarqube/sonarqube -n sonarqube -f values.yaml .
-  506  ls -l
-  507  helm install sonarqube sonarqube/sonarqube -n sonarqube -f values.yaml .
-  508  ls
-  509  ls -l
-  510  ls -a
-  511  helm install sonarqube sonarqube/sonarqube -n sonarqube -f values.yaml .
-  512  ls
-  513  helm install sonarqube sonarqube/sonarqube -n sonarqube -f values.yaml .
-  514  helm install sonarqube sonarqube/sonarqube -n sonarqube -f values.yaml 
-  515  export POD_NAME=$(kubectl get pods --namespace sonarqube -l "app=sonarqube,release=sonarqube" -o jsonpath="{.items[0].metadata.name}")
-  516  kubectl get po -n sonarqube
-  517  kubectl get pods -n sonarque
-  518  kubectl get pods -n sonarqube
-  519  kubectl get pods -n sonarqube
-  520  kubectl get pods -n sonarqube
-  521  helm upgrade sonarqube sonarqube/sonarqube -n sonarqube -f values.yaml 
-  522  kubectl get po -n sonarqube
-  523  kubectl get po -n sonarqube
-  524  kubectl get po -n sonarqube
-  525  kubectl get po -n sonarqube
-  526  kubectl get po -n sonarqube
-  527  kubectl get po -n sonarqube
-  528  kubectl get po -n sonarqube
-  529  kubectl get po -n sonarqube
-  530  kubectl get po -n sonarqube
-  531  helm uninstall sonarqube sonarqube/sonarqube -n sonarqube 
-  532  helm uninstall sonarqube sonarqube/sonarqube -n sonarqube 
-  533  helm list
-  534  kubectl get po -n sonarqube
-  535  kubectl get po
-  536  kubectl exec -it postgres-service-postgres-6c755cf5-99rjd -- bash
-  537  kubectl apply -f sonarqube-db-secret.yaml
-  538  kubectl apply -f sonarqube-db-secret.yaml
-  539  ls
-  540  ls
-  541  kubectl apply -f sonarqube-db-secret.yaml
-  542  history
-  543  helm repo add sonarqube https://SonarSource.github.io/helm-chart-sonarqube --debug
-  544  \
-  545  helm install sonarqube sonarqube/sonarqube -n sonarqube
-  546  helm install sonarqube sonarqube/sonarqube -n sonarqube -f values.yaml
-  547  kubectl get po -n sonarqube
-  548  kubectl get po -n sonarqube
-  549  kubectl get po -n sonarqube
-  550  kubectl get po -n sonarqube
-  551  kubectl describe po sonarqube-sonarqube-0
-  552  kubectl describe po sonarqube-sonarqube-0 -n sonarqube
-  553  ls
-  554  kubectl apply -f sonarqube-db-secret.yaml
-  555  kubectl get po -n sonarqube
-  556  kubectl get po -n sonarqube
-  557  kubectl get po -n sonarqube
-  558  helm upgrade sonarqube sonarqube/sonarqube -n sonarqube
-  559  kubectl get po -n sonarqube
-  560  kubectl get po -n sonarqube
-  561  kubectl get po -n sonarqube
-  562  kubectl get po -n sonarqube
-  563  kubectl get po -n sonarqube
-  564  kubectl describe po sonarqube-s
-  565  kubectl describe po sonarqube-sonarqube -n sonarqube
-  566  kubectl describe po sonarqube-sonarqube -n sonarqube
-  567  kubectl get po -n sonarqube
-  568  kubectl describe po sonarqube-sonarqube-0
-  569  kubectl describe po sonarqube-sonarqube-0 -n sonarqube
-  570  kubectl get secret -n sonarqube
-  571  kubectl apply -f sonarqube-db-secret.yaml -n sonarqube
-  572  kubectl get secret -n sonarqube
-  573  kubectl get secret -n sonarqube
-  574  kubectl get secret -n sonarqube
-  575  kubectl delete secret sonarqube-db-secret -n default
-  576  kubectl get secret -n sonarqube
-  577  kubectl get pods -n sonarqube
-  578  kubectl describe po sonarqube-sonarqube-0 -n sonarqube
-  579  kubectl logs sonarqube-sonarqube-0 -n sonarqube
-  580  kubectl logs sonarqube-sonarqube-0 -n sonarqube -f tail=100
-  581  kubectl logs sonarqube-sonarqube-0 -n sonarqube  tail=100
-  582  kubectl logs sonarqube-sonarqube-0 -n sonarqube -- tail=100
-  583  kubectl logs sonarqube-sonarqube-0 -n sonarqube -c sonarqube
-  584  kubectl get po -n sonarqube 
-  585  kubectl get po -n sonarqube 
-  586  kubectl logs sonarqube-sonarqube-0 -n sonarqube -c sonarqube
-  587  kubectl get po -n sonarqube 
-  588  kubectl logs sonarqube-sonarqube-0 -n sonarqube -c sonarqube
-  589  kubectl logs sonarqube-sonarqube-0 -n sonarqube -c sonarqube --follow
-  590  ekubectl get pod sonarqube-sonarqube-0 -n sonarqube -o jsonpath='{.spec.containers[*].name}'
-  591  ekubectl get pod sonarqube-sonarqube-0 -n sonarqube -o jsonpath='{.spec.containers[*].name}'
-  592  kubectl get pod sonarqube-sonarqube-0 -n sonarqube -o jsonpath='{.spec.containers[*].name}'
-  593  helm get values sonarqube -n sonarqube
-  594  jdbc:postgresql://postgres:5432/sonarqubedb
-  595                       ^^^^^^^^
-  596  kubectl get svc -A
-  597  kubectl get pods
-  598  kubectl exec -it postgres-service-postgres-6c755cf5-99rjd -- psql -U postgres
-  599  kubectl describe secret sonarqube-db-secret -n sonarqube
-  600  kubectl exec -it postgres-service-postgres-6c755cf5-99rjd -- psql -U postgres
-  601  kubectl delete secret sonarqube-db-secret -n sonarqube
-  602  kubectl create secret generic sonarqube-db-secret   --from-literal=jdbc-password=password   -n sonarqube
-  603  helm upgrade sonarqube sonarqube/sonarqube   -n sonarqube   -f values.yaml
-  604  helm upgrade sonarqube sonarqube/sonarqube   -n sonarqube   -f values.yaml
-  605  kubectl get pods -n sonarqube -w
-  606  kubectl logs sonarqube-sonarqube-0 -n sonarqube --tail=100
-  607  kubectl get pods -n sonarqube -w
-  608  kubectl logs sonarqube-sonarqube-0 -n sonarqube --tail=100
-  609  kubectl logs sonarqube-sonarqube-0 -n sonarqube --tail=100
-  610  be-sonarqube-0   0/1     Running   5 (103s ago)   19m
-  611  Defaulted container "sonarqube" out of: sonarqube, init-sysctl (init)
-  612  2026.07.28 05:14:33 INFO  app[][o.s.a.AppFileSystem] Cleaning or creating temp directory /opt/sonarqube/temp
-  613  2026.07.28 05:14:34 INFO  app[][o.s.a.es.EsSettings] Elasticsearch listening on [HTTP: 127.0.0.1:9001, TCP: 127.0.0.1:{}]
-  614  2026.07.28 05:14:34 INFO  app[][o.s.a.ProcessLauncherImpl] Launch process[ELASTICSEARCH] from [/opt/sonarqube/elasticsearch]: /opt/java/openjdk/bin/java -Xms4m -Xmx64m -XX:+UseSerialGC -Dcli.name=server -Dcli.script=./bin/elasticsearch -Dcli.libs=lib/tools/server-cli -Des.path.home=/opt/sonarqube/elasticsearch -Des.path.conf=/opt/sonarqube/data/es8/config -Des.distribution.type=tar -cp /opt/sonarqube/elasticsearch/lib/*:/opt/sonarqube/elasticsearch/lib/cli-launcher/* org.elasticsearch.launcher.CliToolLauncher
-  615  2026.07.28 05:14:35 INFO  app[][o.s.a.SchedulerImpl] Waiting for Elasticsearch to be up and runnin
-  616  kubectl describe pod sonarqube-sonarqube-0 -n sonarqube
-  617  kubectl exec -it sonarqube-sonarqube-0 -n sonarqube -- ls -l /opt/sonarqube/logs
-  618  kubectl exec -it sonarqube-sonarqube-0 -n sonarqube -- cat /opt/sonarqube/logs/sonar.log
-  619  kubectl exec -it sonarqube-sonarqube-0 -n sonarqube -- cat /opt/sonarqube/logs/es.log
-  620  kubectl logs sonarqube-sonarqube-0 -n sonarqube --previous
-  621  kubectl exec -it sonarqube-sonarqube-0 -n sonarqube -- cat /opt/sonarqube/logs/web.log
-  622  helm get values sonarqube -n sonarqube
-  623  kubectl exec -it sonarqube-sonarqube-0 -n sonarqube -- printenv | grep SONAR
-  624  kubectl exec -it sonarqube-sonarqube-0 -n sonarqube -- printenv | grep JDBC
-  625  kubectl describe statefulset sonarqube-sonarqube -n sonarqube
-  626  kubectl get configmap sonarqube-sonarqube-jdbc-config -n sonarqube -o yaml
-  627  kubectl logs sonarqube-sonarqube-0 -n sonarqube --previous
-  628  kubectl exec -it postgres-service-postgres-6c755cf5-99rjd -- psql -U postgres
-  629  kubectl rollout restart statefulset sonarqube-sonarqube -n sonarqube
-  630  kubectl logs -f sonarqube-sonarqube-0 -n sonarqube
-  631  kubectl logs -f sonarqube-sonarqube-0 -n sonarqube
-  632  kubectl logs -f sonarqube-sonarqube-0 -n sonarqube
-  633  kubectl logs -f sonarqube-sonarqube-0 -n sonarqube
-  634  kubecl get po -n sonarqube
-  635  kubectl get po -n sonarqube
-  636  kubectl get po -n sonarqube
-  637  kubectl get po -n sonarqube
-  638  kubectl describe sonarqube-sonarqube-0 -n sonarqube
-  639  kubectl describe po sonarqube-sonarqube-0 -n sonarqube
-  640  kubectl get po -n sonarqube
-  641  kubectl get po -n sonarqube
-  642  kubectl logs sonarqube-sonarqube-0 -n sonarqube
-  643  kubectl logs sonarqube-sonarqube-0 -n sonarqube
-  644  kubectl logs sonarqube-sonarqube-0 -n sonarqube
-  645  kubectl logs sonarqube-sonarqube-0 -n sonarqube --tail=100
-  646  kubectl logs -f sonarqube-sonarqube-0 -n sonarqube
-  647  kubectl get pod sonarqube-sonarqube-0 -n sonarqube
-  648  kubectl describe pod sonarqube-sonarqube-0 -n sonarqube\
-  649  kubectl describe pod sonarqube-sonarqube-0 -n sonarqube\
-  650  kubectl describe pod sonarqube-sonarqube-0 -n sonarqube
-  651  kubectl get pod sonarqube-sonarqube-0 -n sonarqube -o jsonpath='{.status.containerStatuses[0].lastState}'
-  652  kubectl exec -it postgres-service-postgres-6c755cf5-99rjd -- psql -U postgres
-  653  kubectl logs -f sonarqube-sonarqube-0 -n sonarqube
-  654  kubectl logs -f sonarqube-sonarqube-0 -n sonarqube
-  655  kubectl describe pod sonarqube-sonarqube-0 -n sonarqube | grep -A15 "Last State"
-  656  kubectl get pods -n sonarqube -w
-  657  kubectl logs -f sonarqube-sonarqube-0 -n sonarqube
-  658  kubectl exec -it postgres-0 -- psql -U postgres -d sonarqubedb
-  659  kubectl get po
-  660  kubectl exec -it postgres-0 -- psql -U postgres -d sonarqubedb
-  661  kubectl exec -it postgres-service-postgres-6c755cf5-99rjd -- psql -U postgres -d sonarqubedb
-  662  kubectl get po -n sonarqube
-  663  helm remove sonarqube 
-  664  helm unistall sonarqube 
-  665  helm unistall sonarqube sonarqube/sonarqube -n sonarqube
-  666  helm uninstall sonarqube sonarqube/sonarqube -n sonarqube
-  667  kubectl get po -n sonarqube
-  668  kubectl exec -it postgres-service-postgres-6c755cf5-99rjd -- psql -U postgres -d sonarqubedb
-  669  kubectl exec -it postgres-service-postgres-6c755cf5-99rjd -- psql -U postgres 
-  670  kubectl get all
-  671  kubectl get secrets -n sonarqube
-  672  kubectl delete ns sonarqube
-  673  kubectl get secrets -n sonarqube
-  674  kubectl get secrets -n sonarqube
-  675  helm repo add sonarqube https://SonarSource.github.io/helm-chart-sonarqube
-  676  helm repo add sonarqube https://SonarSource.github.io/helm-chart-sonarqube
-  677  helm repo update
-  678  helm repo update
-  679  helm repo list
-  680  helm search repo sonarqube
-  681  kubectl get pods -A | grep postgres
-  682  kubectl get svc -A | grep postgres
-  683  kubectl get svc -A | grep postgres
-  684  kubectl exec -it postgres-0 -- bash
-  685  kubectl get po
-  686  kubectl exec -it postgres-service-postgres-6c755cf5-99rjd -- bash
-  687  docker images
-  688  history > cmd.txt
+    4  ls
+    5  cd Ecom/
+    6  ls
+    7  cd product-service/
+    8  ls
+    9  c ..
+   10  cd ..
+   11  ls -la
+   12  git checkout testin
+   13  git add .
+   14  git commit -m "action"
+   15  git push origin testin
+   16  git fetch testin
+   17  git branch
+   18  git pull orgin testin
+   19  git branch -r
+   20  git checkout -r testin
+   21  git push orgin testin
+   22  ls
+   23  ls -la
+   24  git status
+   25  git chgecout testin
+   26  git status
+   27  git push origin testin
+   28  git log --oneline --graph --decorate --all -10
+   29  git pull --rebase origin testin
+   30  git push origin testin
+   31  sudo -i
+   32  find .github -type f
+   33  cd Ecom/
+   34  find .github -type f
+   35  git status
+   36  git log --oneline -5
+   37  .github/workflows/
+   38  cd .github/workflows/
+   39  nano ci.yml 
+   40  git add .
+   41  git commit -m "testin"
+   42  git push origin testin
+   43  git push origin testin
+   44  cd ...\
+   45  git status
+   46  git push origin testin
+   47  exit
+   48  sudo -i
+   49  exit\
+   50  exit
+   51  git status
+   52  git add .
+   53  git commit -m "1stcommit"
+   54  git commit -m "1stcommit"
+   55  git push origin testin
+   56  git add .
+   57  git commit -m "mvn commit"
+   58  git push origin testin
+   59  git add .
+   60  git commit -m "mvn compile"
+   61  git push origin testin
+   62  git add .
+   63  git commit -m "mvn test"
+   64  git push origin testin
+   65  ls
+   66  cd product-service/
+   67  cd ..
+   68  helm repo add sonarqube https://SonarSource.github.io/helm-chart-sonarqube
+   69  helm repo ad bitnami
+   70  helm repo add bitnami
+   71  helm repo add sonarqube https://SonarSource.github.io/helm-chart-sonarqube
+   72  helm repo update
+   73  helm repo update
+   74  helm repo remove sonarqube
+   75  helm repo add sonarqube https://SonarSource.github.io/helm-chart-sonarqube
+   76  cd ~
+   77  wget https://github.com/SonarSource/helm-chart-sonarqube/archive/refs/heads/master.zip
+   78  unzip master.zip
+   79  cd helm-chart-sonarqube-master/charts/sonarqube
+   80  helm install sonarqube .   --namespace sonarqube   --create-namespace
+   81  k3d cluster start mycluster
+   82  helm install sonarqube .   --namespace sonarqube   --create-namespace
+   83  kubectl get no
+   84  kubectl get po
+   85  history
+   86  export KUBECONFIG=/root/.config/k3d/kubeconfig-mycluster.yamlexport KUBECONFIG=/root/.config/k3d/kubeconfig-mycluster.yaml
+   87  export KUBECONFIG=/root/.config/k3d/kubeconfig-mycluster.yaml
+   88  kubectl get po
+   89  helm install sonarqube .   --namespace sonarqube   --create-namespace
+   90  helm install sonarqube . --namespace sonarqube --create-namespace
+   91  sudo -0i
+   92  sudo -i
+   93  ls
+   94  rm -r helm-chart-sonarqube-master
+   95  helm repo add sonarqube https://SonarSource.github.io/helm-chart-sonarqube
+   96  helm repo update
+   97  helm search repo sonarqube
+   98  kubectl create namespace sonarqube
+   99  kubectl get po
+  100  ls
+  101  cd Ecom/
+  102  ls
+  103  kubectl get po
+  104  git status
+  105  export KUBECONFIG=/root/.config/k3d/kubeconfig-mycluster.yaml
+  106  kubectl get po
+  107  export KUBECONFIG=/root/.config/k3d/kubeconfig-mycluster.yaml
+  108  kubectl create namespace sonarqube
+  109  helm install sonarqube sonarqube/sonarqube -n sonarqube
+  110  helm install sonarqube sonarqube/sonarqube   -n sonarqube   --create-namespace   --set monitoringPasscode="admin"
+  111  helm install sonarqube sonarqube/sonarqube   -n sonarqube   --create-namespace   --set community.enabled=true   --set monitoringPasscode="admin"
+  112  helm list -n sonarqube
+  113  kubectl get pods -n sonarqube
+  114  kubectl get pods -n sonarqube
+  115  kubectl get pods -n sonarqube -w
+  116  export POD_NAME=$(kubectl get pods --namespace sonarqube -l "app=sonarqube,release=sonarqube" -o jsonpath="{.items[0].metadata.name}")
+  117  kubectl get pods -n sonarqube -w
+  118  kubectl describe pod sonarqube-sonarqube-0 -n sonarqube
+  119  kubectl get pods -n sonarqube -w
+  120  kubectl describe pod sonarqube-sonarqube-0 -n sonarqube
+  121  kubectl describe pod sonarqube-sonarqube-0 -n sonarqube
+  122  helm search repo sonarqube
+  123  kubectl describe pod sonarqube-sonarqube-0 -n sonarqube
+  124  kubectl get pods -n sonarqube -w
+  125  kubectl describe pod sonarqube-sonarqube-0 -n sonarqube
+  126  kubectl get pods -n sonarqube -w
+  127  kubectl logs sonarqube-sonarqube-0
+  128  kubectl logs sonarqube-sonarqube-0 -n sonarqube
+  129  helm uninstall sonarqube -n sonarqube
+  130  kubectl get po -n sonarqube
+  131  helm search repo sonarqube
+  132  helm install sonarqube sonarqube/sonarqube -n sonarqube
+  133  helm install sonarqube sonarqube/sonarqube -n sonarqube --set monitoringPasscode="admin"
+  134  helm install sonarqube sonarqube/sonarqube -n sonarqube --set monitoringPasscode="admin" --set community.enabled=true --set edition=""
+  135  export POD_NAME=$(kubectl get pods --namespace sonarqube -l "app=sonarqube,release=sonarqube" -o jsonpath="{.items[0].metadata.name}")
+  136  kubectl get po -n sonarqube
+  137  kubectl get po -n sonarqube -w
+  138  kubectl logs sonarqube-sonarqube-0 -n sonarqube
+  139  kubectl get po -n sonarqube -w
+  140  kubectl describe po sonarqube-sonarqube-0 -n sonarqube
+  141  Events:
+  142    Type     Reason     Age               From               Message
+  143    ----     ------     ----              ----               -------
+  144    Normal   Scheduled  79s               default-scheduler  Successfully assigned sonarqube/sonarqube-sonarqube-0 to k3d-mycluster-server-0
+  145    Normal   Pulled     77s               kubelet            spec.initContainers{init-sysctl}: Container image "sonarqube:26.7.0.124771-community" already present on machine and can be accessed by the pod
+  146    Normal   Created    76s               kubelet            spec.initContainers{init-sysctl}: Container created
+  147    Normal   Started    75s               kubelet            spec.initContainers{init-sysctl}: Container started
+  148    Normal   Pulled     74s               kubelet            spec.containers{sonarqube}: Container image "sonarqube:26.7.0.124771-community" already present on machine and can be accessed by the pod
+  149    Normal   Created    73s               kubelet            spec.containers{sonarqube}: Container created
+  150    Normal   Started    73s               kubelet            spec.containers{sonarqube}: Container started
+  151    Warning  Unhealthy  9s (x4 over 39s)  kubelet            spec.containers{sonarqube}: Startup probe failed: Get "http://10.42.0.56:9000/api/system/status": dial tcp 10.42.0.56:9000: connect: connection refused
+  152  kubectl logs -n sonarqube sonarqube-sonarqube-0
+  153  kubectl get pods -n sonarqube -w
+  154  kubectl logs -n sonarqube sonarqube-sonarqube-0 --tail=100
+  155  kubectl get pods -n sonarqube -w
+  156  kubectl logs -f -n sonarqube sonarqube-sonarqube-0
+  157  kubectl logs -f -n sonarqube sonarqube-sonarqube-0
+  158  kubectl get pods -n sonarqube -w
+  159  kubectl logs -f -n sonarqube sonarqube-sonarqube-0
+  160  kubectl get pods -n sonarqube -w
+  161  kubectl logs -f -n sonarqube sonarqube-sonarqube-0
+  162  kubectl logs -f -n sonarqube sonarqube-sonarqube-0
+  163  kubectl get pods -n sonarqube -w
+  164  helm repo remove sonarqube/sonarqube
+  165  kubectl get pods -n sonarqube -w
+  166  kubectl delete pod sonarqube-sonarqube-0
+  167  kubectl delete pod sonarqube-sonarqube-0 -n sonarqube
+  168  kubectl delete pod sonarqube-sonarqube-0 -n sonarqube
+  169  kubectl get pods -n sonarqube -w
+  170  hel list
+  171  helm list
+  172  kubectl get pods -n sonarqube -w
+  173  kubectl get deploy
+  174  kubectl delete ns sonarqube
+  175  kubectl get pods -n sonarqube -w
+  176  kubectl get pods -n sonarqube -w
+  177  kubectl get all
+  178  kubectl get all
+  179  kubectl get ns\
+  180  kubectl get ns
+  181  kubectl get pods -n sonarqube -w
+  182  k3d cluster stop sonarqube
+  183  k3d cluster stop mycluster
+  184  k3d cluster start mycluster
+  185  kubectl get ns
+  186  export POD_NAME=$(kubectl get pods --namespace sonarqube -l "app=sonarqube,release=sonarqube" -o jsonpath="{.items[0].metadata.name}")
+  187  export KUBECONFIG=/root/.config/k3d/kubeconfig-mycluster.yaml
+  188  kubectl get ns
+  189  kubectl create namespace sonarqube
+  190  helm repo add sonarqube https://SonarSource.github.io/helm-chart-sonarqube
+  191  curl -I https://SonarSource.github.io/helm-chart-sonarqube/index.yaml
+  192  helm repo add sonarqube https://SonarSource.github.io/helm-chart-sonarqube --debug
+  193  helm install sonarqube sonarqube/sonarqube   -n sonarqube   -f values.yaml
+  194  helm install sonarqube sonarqube/sonarqube   -n sonarqube   -f values.yaml
+  195  helm install sonarqube sonarqube/sonarqube   -n sonarqube   -f values.yaml .
+  196  helm install sonarqube sonarqube/sonarqube -n sonarqube -f values.yaml .
+  197  ls -l
+  198  helm install sonarqube sonarqube/sonarqube -n sonarqube -f values.yaml .
+  199  ls
+  200  ls -l
+  201  ls -a
+  202  helm install sonarqube sonarqube/sonarqube -n sonarqube -f values.yaml .
+  203  ls
+  204  helm install sonarqube sonarqube/sonarqube -n sonarqube -f values.yaml .
+  205  helm install sonarqube sonarqube/sonarqube -n sonarqube -f values.yaml 
+  206  export POD_NAME=$(kubectl get pods --namespace sonarqube -l "app=sonarqube,release=sonarqube" -o jsonpath="{.items[0].metadata.name}")
+  207  kubectl get po -n sonarqube
+  208  kubectl get pods -n sonarque
+  209  kubectl get pods -n sonarqube
+  210  kubectl get pods -n sonarqube
+  211  kubectl get pods -n sonarqube
+  212  helm upgrade sonarqube sonarqube/sonarqube -n sonarqube -f values.yaml 
+  213  kubectl get po -n sonarqube
+  214  kubectl get po -n sonarqube
+  215  kubectl get po -n sonarqube
+  216  kubectl get po -n sonarqube
+  217  kubectl get po -n sonarqube
+  218  kubectl get po -n sonarqube
+  219  kubectl get po -n sonarqube
+  220  kubectl get po -n sonarqube
+  221  kubectl get po -n sonarqube
+  222  helm uninstall sonarqube sonarqube/sonarqube -n sonarqube 
+  223  helm uninstall sonarqube sonarqube/sonarqube -n sonarqube 
+  224  helm list
+  225  kubectl get po -n sonarqube
+  226  kubectl get po
+  227  kubectl exec -it postgres-service-postgres-6c755cf5-99rjd -- bash
+  228  kubectl apply -f sonarqube-db-secret.yaml
+  229  kubectl apply -f sonarqube-db-secret.yaml
+  230  ls
+  231  ls
+  232  kubectl apply -f sonarqube-db-secret.yaml
+  233  history
+  234  helm repo add sonarqube https://SonarSource.github.io/helm-chart-sonarqube --debug
+  235  \
+  236  helm install sonarqube sonarqube/sonarqube -n sonarqube
+  237  helm install sonarqube sonarqube/sonarqube -n sonarqube -f values.yaml
+  238  kubectl get po -n sonarqube
+  239  kubectl get po -n sonarqube
+  240  kubectl get po -n sonarqube
+  241  kubectl get po -n sonarqube
+  242  kubectl describe po sonarqube-sonarqube-0
+  243  kubectl describe po sonarqube-sonarqube-0 -n sonarqube
+  244  ls
+  245  kubectl apply -f sonarqube-db-secret.yaml
+  246  kubectl get po -n sonarqube
+  247  kubectl get po -n sonarqube
+  248  kubectl get po -n sonarqube
+  249  helm upgrade sonarqube sonarqube/sonarqube -n sonarqube
+  250  kubectl get po -n sonarqube
+  251  kubectl get po -n sonarqube
+  252  kubectl get po -n sonarqube
+  253  kubectl get po -n sonarqube
+  254  kubectl get po -n sonarqube
+  255  kubectl describe po sonarqube-s
+  256  kubectl describe po sonarqube-sonarqube -n sonarqube
+  257  kubectl describe po sonarqube-sonarqube -n sonarqube
+  258  kubectl get po -n sonarqube
+  259  kubectl describe po sonarqube-sonarqube-0
+  260  kubectl describe po sonarqube-sonarqube-0 -n sonarqube
+  261  kubectl get secret -n sonarqube
+  262  kubectl apply -f sonarqube-db-secret.yaml -n sonarqube
+  263  kubectl get secret -n sonarqube
+  264  kubectl get secret -n sonarqube
+  265  kubectl get secret -n sonarqube
+  266  kubectl delete secret sonarqube-db-secret -n default
+  267  kubectl get secret -n sonarqube
+  268  kubectl get pods -n sonarqube
+  269  kubectl describe po sonarqube-sonarqube-0 -n sonarqube
+  270  kubectl logs sonarqube-sonarqube-0 -n sonarqube
+  271  kubectl logs sonarqube-sonarqube-0 -n sonarqube -f tail=100
+  272  kubectl logs sonarqube-sonarqube-0 -n sonarqube  tail=100
+  273  kubectl logs sonarqube-sonarqube-0 -n sonarqube -- tail=100
+  274  kubectl logs sonarqube-sonarqube-0 -n sonarqube -c sonarqube
+  275  kubectl get po -n sonarqube 
+  276  kubectl get po -n sonarqube 
+  277  kubectl logs sonarqube-sonarqube-0 -n sonarqube -c sonarqube
+  278  kubectl get po -n sonarqube 
+  279  kubectl logs sonarqube-sonarqube-0 -n sonarqube -c sonarqube
+  280  kubectl logs sonarqube-sonarqube-0 -n sonarqube -c sonarqube --follow
+  281  ekubectl get pod sonarqube-sonarqube-0 -n sonarqube -o jsonpath='{.spec.containers[*].name}'
+  282  ekubectl get pod sonarqube-sonarqube-0 -n sonarqube -o jsonpath='{.spec.containers[*].name}'
+  283  kubectl get pod sonarqube-sonarqube-0 -n sonarqube -o jsonpath='{.spec.containers[*].name}'
+  284  helm get values sonarqube -n sonarqube
+  285  jdbc:postgresql://postgres:5432/sonarqubedb
+  286                       ^^^^^^^^
+  287  kubectl get svc -A
+  288  kubectl get pods
+  289  kubectl exec -it postgres-service-postgres-6c755cf5-99rjd -- psql -U postgres
+  290  kubectl describe secret sonarqube-db-secret -n sonarqube
+  291  kubectl exec -it postgres-service-postgres-6c755cf5-99rjd -- psql -U postgres
+  292  kubectl delete secret sonarqube-db-secret -n sonarqube
+  293  kubectl create secret generic sonarqube-db-secret   --from-literal=jdbc-password=password   -n sonarqube
+  294  helm upgrade sonarqube sonarqube/sonarqube   -n sonarqube   -f values.yaml
+  295  helm upgrade sonarqube sonarqube/sonarqube   -n sonarqube   -f values.yaml
+  296  kubectl get pods -n sonarqube -w
+  297  kubectl logs sonarqube-sonarqube-0 -n sonarqube --tail=100
+  298  kubectl get pods -n sonarqube -w
+  299  kubectl logs sonarqube-sonarqube-0 -n sonarqube --tail=100
+  300  kubectl logs sonarqube-sonarqube-0 -n sonarqube --tail=100
+  301  be-sonarqube-0   0/1     Running   5 (103s ago)   19m
+  302  Defaulted container "sonarqube" out of: sonarqube, init-sysctl (init)
+  303  2026.07.28 05:14:33 INFO  app[][o.s.a.AppFileSystem] Cleaning or creating temp directory /opt/sonarqube/temp
+  304  2026.07.28 05:14:34 INFO  app[][o.s.a.es.EsSettings] Elasticsearch listening on [HTTP: 127.0.0.1:9001, TCP: 127.0.0.1:{}]
+  305  2026.07.28 05:14:34 INFO  app[][o.s.a.ProcessLauncherImpl] Launch process[ELASTICSEARCH] from [/opt/sonarqube/elasticsearch]: /opt/java/openjdk/bin/java -Xms4m -Xmx64m -XX:+UseSerialGC -Dcli.name=server -Dcli.script=./bin/elasticsearch -Dcli.libs=lib/tools/server-cli -Des.path.home=/opt/sonarqube/elasticsearch -Des.path.conf=/opt/sonarqube/data/es8/config -Des.distribution.type=tar -cp /opt/sonarqube/elasticsearch/lib/*:/opt/sonarqube/elasticsearch/lib/cli-launcher/* org.elasticsearch.launcher.CliToolLauncher
+  306  2026.07.28 05:14:35 INFO  app[][o.s.a.SchedulerImpl] Waiting for Elasticsearch to be up and runnin
+  307  kubectl describe pod sonarqube-sonarqube-0 -n sonarqube
+  308  kubectl exec -it sonarqube-sonarqube-0 -n sonarqube -- ls -l /opt/sonarqube/logs
+  309  kubectl exec -it sonarqube-sonarqube-0 -n sonarqube -- cat /opt/sonarqube/logs/sonar.log
+  310  kubectl exec -it sonarqube-sonarqube-0 -n sonarqube -- cat /opt/sonarqube/logs/es.log
+  311  kubectl logs sonarqube-sonarqube-0 -n sonarqube --previous
+  312  kubectl exec -it sonarqube-sonarqube-0 -n sonarqube -- cat /opt/sonarqube/logs/web.log
+  313  helm get values sonarqube -n sonarqube
+  314  kubectl exec -it sonarqube-sonarqube-0 -n sonarqube -- printenv | grep SONAR
+  315  kubectl exec -it sonarqube-sonarqube-0 -n sonarqube -- printenv | grep JDBC
+  316  kubectl describe statefulset sonarqube-sonarqube -n sonarqube
+  317  kubectl get configmap sonarqube-sonarqube-jdbc-config -n sonarqube -o yaml
+  318  kubectl logs sonarqube-sonarqube-0 -n sonarqube --previous
+  319  kubectl exec -it postgres-service-postgres-6c755cf5-99rjd -- psql -U postgres
+  320  kubectl rollout restart statefulset sonarqube-sonarqube -n sonarqube
+  321  kubectl logs -f sonarqube-sonarqube-0 -n sonarqube
+  322  kubectl logs -f sonarqube-sonarqube-0 -n sonarqube
+  323  kubectl logs -f sonarqube-sonarqube-0 -n sonarqube
+  324  kubectl logs -f sonarqube-sonarqube-0 -n sonarqube
+  325  kubecl get po -n sonarqube
+  326  kubectl get po -n sonarqube
+  327  kubectl get po -n sonarqube
+  328  kubectl get po -n sonarqube
+  329  kubectl describe sonarqube-sonarqube-0 -n sonarqube
+  330  kubectl describe po sonarqube-sonarqube-0 -n sonarqube
+  331  kubectl get po -n sonarqube
+  332  kubectl get po -n sonarqube
+  333  kubectl logs sonarqube-sonarqube-0 -n sonarqube
+  334  kubectl logs sonarqube-sonarqube-0 -n sonarqube
+  335  kubectl logs sonarqube-sonarqube-0 -n sonarqube
+  336  kubectl logs sonarqube-sonarqube-0 -n sonarqube --tail=100
+  337  kubectl logs -f sonarqube-sonarqube-0 -n sonarqube
+  338  kubectl get pod sonarqube-sonarqube-0 -n sonarqube
+  339  kubectl describe pod sonarqube-sonarqube-0 -n sonarqube\
+  340  kubectl describe pod sonarqube-sonarqube-0 -n sonarqube\
+  341  kubectl describe pod sonarqube-sonarqube-0 -n sonarqube
+  342  kubectl get pod sonarqube-sonarqube-0 -n sonarqube -o jsonpath='{.status.containerStatuses[0].lastState}'
+  343  kubectl exec -it postgres-service-postgres-6c755cf5-99rjd -- psql -U postgres
+  344  kubectl logs -f sonarqube-sonarqube-0 -n sonarqube
+  345  kubectl logs -f sonarqube-sonarqube-0 -n sonarqube
+  346  kubectl describe pod sonarqube-sonarqube-0 -n sonarqube | grep -A15 "Last State"
+  347  kubectl get pods -n sonarqube -w
+  348  kubectl logs -f sonarqube-sonarqube-0 -n sonarqube
+  349  kubectl exec -it postgres-0 -- psql -U postgres -d sonarqubedb
+  350  kubectl get po
+  351  kubectl exec -it postgres-0 -- psql -U postgres -d sonarqubedb
+  352  kubectl exec -it postgres-service-postgres-6c755cf5-99rjd -- psql -U postgres -d sonarqubedb
+  353  kubectl get po -n sonarqube
+  354  helm remove sonarqube 
+  355  helm unistall sonarqube 
+  356  helm unistall sonarqube sonarqube/sonarqube -n sonarqube
+  357  helm uninstall sonarqube sonarqube/sonarqube -n sonarqube
+  358  kubectl get po -n sonarqube
+  359  kubectl exec -it postgres-service-postgres-6c755cf5-99rjd -- psql -U postgres -d sonarqubedb
+  360  kubectl exec -it postgres-service-postgres-6c755cf5-99rjd -- psql -U postgres 
+  361  kubectl get all
+  362  kubectl get secrets -n sonarqube
+  363  kubectl delete ns sonarqube
+  364  kubectl get secrets -n sonarqube
+  365  kubectl get secrets -n sonarqube
+  366  helm repo add sonarqube https://SonarSource.github.io/helm-chart-sonarqube
+  367  helm repo add sonarqube https://SonarSource.github.io/helm-chart-sonarqube
+  368  helm repo update
+  369  helm repo update
+  370  helm repo list
+  371  helm search repo sonarqube
+  372  kubectl get pods -A | grep postgres
+  373  kubectl get svc -A | grep postgres
+  374  kubectl get svc -A | grep postgres
+  375  kubectl exec -it postgres-0 -- bash
+  376  kubectl get po
+  377  kubectl exec -it postgres-service-postgres-6c755cf5-99rjd -- bash
+  378  docker images
+  379  history > cmd.txt
+  380  ls
+  381  git add product-service/pom.xml 
+  382  git add product-service/pom.xml 
+  383  git commit -m "OWASP"
+  384  git push origin testin
+  385  git add product-service/pom.xml 
+  386  git commit -m "LEAKS"
+  387  git add product-service/pom.xml 
+  388  git commit -m "LEAKS"
+  389  git commit -m "LEAKS"
+  390  git push origin testin
+  391  git add product-service/pom.xml 
+  392  gt commint -m "GIT-leaks"
+  393  git commint -m "GIT-leaks"
+  394  git commit -m "GIT-leaks"
+  395  git add .
+  396  git commit -m "GIT-leaks1"
+  397  git push origin testin
+  398  git add .
+  399  git commit -m "updated"
+  400  git push origin testin
+  401  git commit oneline 
+  402  git --help
+  403  git commit oneline testin
+  404  git commit -- oneline testin
+  405  mvn dependency-check:update-only -DnvdApiKey=<your-key>
+  406  git add .
+  407  git commit -m "check"
+  408  git push origin testin
+  409  git add .
+  410  git commit -m "autoupdate"
+  411  git push origin testin
+  412  git add .
+  413  gti commit -m "fast"
+  414  git commit -m "fast"
+  415  git push origin testin
+  416  git add .
+  417  git commit -m "leaks"
+  418  git push origin testin
+  419  git add .
+  420  git add .
+  421  git commit -m "leakss"
+  422  git push origin testin
+  423  git add .
+  424  git commit -m "leak"
+  425  git push origin testin
+  426  git add .
+  427  git commit -m "sbom"
+  428  git push origin testin
+  429  git add .
+  430  git commit -m "sbom1"
+  431  git push origin testin
+  432  git add .
+  433  git commit -m "sbom12"
+  434  git push origin testin
+  435  mvn cyclonedx:makeBom
+  436  mvn cyclonedx:makeBom
+  437  cd product-service/
+  438  mvn cyclonedx:makeBom
+  439  git add .
+  440  git commit -m "upodated"
+  441  git push origin testin
+  442  git add .
+  443  git commit -m "upodated11"
+  444  ls
+  445  cd product-service/
+  446  ls
+  447  git add .
+  448  git commit -m "bom1"
+  449  cd ..
+  450  git add .
+  451  git commit -m "bom12"
+  452  git push origin push
+  453  git push origin testin
+  454  ls -l target
+  455  cd product-service/
+  456  ls -l target
+  457  cd product-service/
+  458  cd ..
+  459  git add .
+  460  git commit -m "directory"
+  461  git push origin testin
+  462  git add .
+  463  git commit -m "image"
+  464  git push origin testin
+  465  git add .
+  466  git commit -m "image1"
+  467  git push origin testin
+  468  git add . 
+  469  gti commit -m "trivy"
+  470  git commit -m "trivy"
+  471  git push origin testin
+  472  git add . 
+  473  git commit -m "trivy1"
+  474  git push origin testin
+  475  git add . 
+  476  git commit -m "trivyy"
+  477  git push origin testin
+  478  git add . 
+  479  git commit -m "trivyyy"
+  480  git push origin testin
+  481  git add . 
+  482  git commit -m "trivyyyy"
+  483  git push origin testin
+  484  ls
+  485  cd product-service/
+  486  ls
+  487  ls -a
+  488  git add . 
+  489  git commit -m "trivyyyyy"
+  490  cd ..
+  491  git add .
+  492  git commit -m "trivyyyyyy"
+  493  git push origin testin
+  494  git add .
+  495  git commit -m "trivyyyyyyy"
+  496  git push origin testin
+  497  git add .
+  498  git commit -m "trivyyyyyyyy"
+  499  git push origin testin
+  500  git add .
+  501  git commit -m "trivyyyyyyyyy"
+  502  git push origin testin
+  503  history > cmd.txt 
