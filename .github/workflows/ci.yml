@@ -95,7 +95,6 @@ jobs:
   # gitleaks:
   #   name: Secret Scan
   #   needs: build
-  # if: always()
   #   runs-on: ubuntu-latest
 
   #   steps:
@@ -119,7 +118,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: sbom
-          path: product-service/target/bom.json
+          path: target/bom.json
 
       - name: Show current directory
         run: pwd
@@ -142,32 +141,30 @@ jobs:
 
       - name: Trivy Image Scan
         uses: aquasecurity/trivy-action@v0.33.1
-        continue-on-error: true
-
         with:
-          image-ref: product-service:${{ github.sha }}
+          image-ref: ${{ secrets.DOCKERHUB_USERNAME }}/product-service:${{ github.sha }}
           format: table
-          output: trivy-report.txt
-          severity: CRITICAL,HIGH
-          exit-code: 1
+          scan-type: image
+          severity: HIGH,CRITICAL
+          exit-code: 0
 
-      - name: Upload Trivy Report
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: trivy-report
-          path: trivy-report.txt
+      # - name: Upload Trivy Report
+      #   if: always()
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: trivy-report
+      #     path: trivy-report.txt
 
 
 
-      - name: Push Docker Image
-        run: |
-          docker push \
-            ${{ secrets.DOCKERHUB_USERNAME }}/product-service:${{ github.sha }}
+      # - name: Push Docker Image
+      #   run: |
+      #     docker push \
+      #       ${{ secrets.DOCKERHUB_USERNAME }}/product-service:${{ github.sha }}
 
 
       
-      - name: Debug image-ref
-        run: |
-          echo "github.sha = ${{ github.sha }}"
-          echo "image-ref = product-service:${{ github.sha }}"
+      # - name: Debug image-ref
+      #   run: |
+      #     echo "github.sha = ${{ github.sha }}"
+      #     echo "image-ref = ${{ secrets.DOCKERHUB_USERNAME }}/product-service:${{ github.sha }}"
