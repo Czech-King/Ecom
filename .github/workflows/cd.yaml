@@ -39,18 +39,15 @@ jobs:
       - name: Setup kubectl
         uses: azure/setup-kubectl@v4
 
-      - name: Verify kubectl
-        run: kubectl version --client
-
       #################################################
       # 4. Configure kubeconfig
       #################################################
 
-      - name: Configure kubeconfig
-        run: |
-          mkdir -p ~/.kube
-          cp /root/.config/k3d/kubeconfig-mycluster.yaml ~/.kube/config
-          chmod 600 ~/.kube/config
+      # - name: Configure kubeconfig
+      #   run: |
+      #     mkdir -p ~/.kube
+      #     cp /root/.config/k3d/kubeconfig-mycluster.yaml ~/.kube/config
+      #     chmod 600 ~/.kube/config
 
       #################################################
       # 5. Verify Kubernetes Connectivity
