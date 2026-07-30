@@ -3,12 +3,22 @@ name: Product Service CD
 on:
   workflow_dispatch:
 
+  workflow_run:
+    workflows:
+      - Product Service CI
+    types:
+      - completed
+
 jobs:
   deploy:
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'workflow_run' &&
+       github.event.workflow_run.conclusion == 'success')
+
     name: Deploy Product Service
     runs-on:
       - self-hosted
-
 
     defaults:
       run:
