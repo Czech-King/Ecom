@@ -170,10 +170,10 @@ jobs:
 
 
 
-      # - name: Push Docker Image
-      #   run: |
-      #     docker push \
-      #       ${{ secrets.DOCKERHUB_USERNAME }}/product-service:${{ github.sha }}
+      - name: Push Docker Image
+        run: |
+          docker push \
+            ${{ secrets.DOCKERHUB_USERNAME }}/product-service:${{ github.sha }}
 
 
       
