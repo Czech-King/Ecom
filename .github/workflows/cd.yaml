@@ -71,4 +71,4 @@ jobs:
       - name: Deploy with Helm
         run: |
           helm upgrade --install product-service ./helm/product-service \
-            --set image.tag=${{ github.sha }} 
+            --set image.tag=${{ github.sha }} --wait
