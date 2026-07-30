@@ -22,12 +22,12 @@ secret:
 resources: {}
 
 probes:
-  startup:
-    path: /actuator/health
-    initialDelaySeconds: 10
-    periodSeconds: 5
-    timeoutSeconds: 2
-    failureThreshold: 30
+  # startup:
+  #   path: /actuator/health
+  #   initialDelaySeconds: 10
+  #   periodSeconds: 5
+  #   timeoutSeconds: 2
+  #   failureThreshold: 30
 
   liveness:
     path: /actuator/health/liveness

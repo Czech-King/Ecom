@@ -37,14 +37,14 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
 
-          startupProbe:
-            httpGet:
-              path: {{ .Values.probes.startup.path }}
-              port: {{ .Values.service.targetPort }}
-            initialDelaySeconds: {{ .Values.probes.startup.initialDelaySeconds }}
-            periodSeconds: {{ .Values.probes.startup.periodSeconds }}
-            timeoutSeconds: {{ .Values.probes.startup.timeoutSeconds }}
-            failureThreshold: {{ .Values.probes.startup.failureThreshold }}
+          # startupProbe:
+          #   httpGet:
+          #     path: {{ .Values.probes.startup.path }}
+          #     port: {{ .Values.service.targetPort }}
+          #   initialDelaySeconds: {{ .Values.probes.startup.initialDelaySeconds }}
+          #   periodSeconds: {{ .Values.probes.startup.periodSeconds }}
+          #   timeoutSeconds: {{ .Values.probes.startup.timeoutSeconds }}
+          #   failureThreshold: {{ .Values.probes.startup.failureThreshold }}
 
           livenessProbe:
             httpGet:
