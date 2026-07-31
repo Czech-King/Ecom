@@ -71,7 +71,7 @@ jobs:
       - name: Deploy with Helm
         run: |
           helm upgrade --install product-service ./helm/product-service \
-            --set image.tag=$ wrong-tag --wait --timeout 5m --atomic
+            --set image.tag=$ wrong-tag --wait --timeout 5m --rollback-on-failure
 
 
 #################################################
