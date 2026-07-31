@@ -71,4 +71,101 @@ jobs:
       - name: Deploy with Helm
         run: |
           helm upgrade --install product-service ./helm/product-service \
-            --set image.tag=${{ github.sha }} --wait
+            --set image.tag=${{ github.sha }} --wait --timeout 5m
+
+
+#################################################
+      # 6. Verify Rollout
+      #################################################
+
+      - name: Verify Rollout
+        run: |
+          kubectl rollout status deployment/product-service
+
+      #################################################
+      # 7. Verify Deployment
+      #################################################
+
+      - name: Verify Deployment
+        run: |
+          kubectl get deployment product-service
+
+      #################################################
+      # 8. Verify ReplicaSet
+      #################################################
+
+      - name: Verify ReplicaSets
+        run: |
+          kubectl get rs
+
+      #################################################
+      # 9. Verify Pods
+      #################################################
+
+      - name: Verify Pods
+        run: |
+          kubectl get pods -o wide
+
+      #################################################
+      # 10. Verify Deployed Image
+      #################################################
+
+      - name: Verify Deployed Image
+        run: |
+          echo "Expected Image:"
+          echo "${{ secrets.DOCKERHUB_USERNAME }}/product-service:${{ github.sha }}"
+          echo
+
+          echo "Running Image:"
+          kubectl get deployment product-service \
+            -o=jsonpath='{.spec.template.spec.containers[0].image}'
+          echo
+
+      #################################################
+      # 11. Recent Kubernetes Events
+      #################################################
+
+      - name: Recent Kubernetes Events
+        if: always()
+        run: |
+          kubectl get events \
+            --sort-by=.metadata.creationTimestamp | tail -20
+
+      #################################################
+      # 12. Application Logs
+      #################################################
+
+      - name: Application Logs
+        if: always()
+        run: |
+          kubectl logs deployment/product-service --tail=50
+
+      #################################################
+      # 13. Health Check
+      #################################################
+
+      - name: Application Health Check
+        run: |
+          kubectl port-forward service/product-service 8080:8080 >/tmp/port-forward.log 2>&1 &
+          PF_PID=$!
+
+          sleep 5
+
+          curl --fail http://localhost:8080/actuator/health
+
+          kill $PF_PID
+
+      #################################################
+      # 14. Smoke Test
+      #################################################
+
+      - name: Smoke Test
+        run: |
+          kubectl port-forward service/product-service 8080:8080 >/tmp/port-forward.log 2>&1 &
+          PF_PID=$!
+
+          sleep 5
+
+          curl --fail http://localhost:8080/products
+
+          kill $PF_PID
