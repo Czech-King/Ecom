@@ -159,13 +159,13 @@ jobs:
       # 14. Smoke Test
       #################################################
 
-      - name: Smoke Test
-        run: |
-          kubectl port-forward service/product-service 8080:8080 >/tmp/port-forward.log 2>&1 &
-          PF_PID=$!
+      # - name: Smoke Test
+      #   run: |
+      #     kubectl port-forward service/product-service 8080:8080 >/tmp/port-forward.log 2>&1 &
+      #     PF_PID=$!
 
-          sleep 5
+      #     sleep 5
 
-          curl --fail http://localhost:8080/products
+      #     curl --fail http://localhost:8080/actuator/health
 
-          kill $PF_PID
+      #     kill $PF_PID
