@@ -1,7 +1,7 @@
 replicaCount: 3
 
 config:
-  dbHost: postgres-prod
+  dbHost: postgres
   springProfile: prod
 
 resources:
