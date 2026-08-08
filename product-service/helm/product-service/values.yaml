@@ -43,3 +43,42 @@ probes:
     timeoutSeconds: 2
     successThreshold: 1
     failureThreshold: 3
+
+
+# image:
+#   repository: zukien/product-service
+#   pullPolicy: IfNotPresent
+
+# service:
+#   type: ClusterIP
+#   port: 8080
+#   targetPort: 8080
+
+# config:
+#   dbPort: "5432"
+
+# secret:
+#   username: postgres
+
+# probes:
+#   startup:
+#     path: /actuator/health
+#     initialDelaySeconds: 10
+#     periodSeconds: 5
+#     timeoutSeconds: 2
+#     failureThreshold: 30
+
+#   liveness:
+#     path: /actuator/health/liveness
+#     initialDelaySeconds: 30
+#     periodSeconds: 10
+#     timeoutSeconds: 2
+#     failureThreshold: 3
+
+#   readiness:
+#     path: /actuator/health/readiness
+#     initialDelaySeconds: 20
+#     periodSeconds: 5
+#     timeoutSeconds: 2
+#     successThreshold: 1
+#     failureThreshold: 3
