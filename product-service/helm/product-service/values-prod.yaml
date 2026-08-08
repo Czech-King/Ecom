@@ -1,0 +1,13 @@
+replicaCount: 3
+
+config:
+  dbHost: postgres-prod
+  springProfile: prod
+
+resources:
+  requests:
+    cpu: "500m"
+    memory: "1Gi"
+  limits:
+    cpu: "1"
+    memory: "2Gi"
