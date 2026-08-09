@@ -40,8 +40,10 @@ jobs:
           helm upgrade --install product-service \
             ./helm/product-service \
             -f ./helm/product-service/values.yaml \
-            -f ./helm/product-service/values-prod.yaml \
+            -f ./helm/product-service/values-stage.yaml \
             --set image.tag=${{ inputs.image_tag }} \
+            --namespace stage \
+            --create-namespace
             --wait \
             --timeout 5m \
             --atomic
