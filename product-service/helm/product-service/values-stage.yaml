@@ -2,12 +2,12 @@ replicaCount: 1
 
 config:
   dbHost: postgres
-  springProfile: prod
+  springProfile: stage
 
 resources:
   requests:
+    cpu: "300m"
+    memory: "512Mi"
+  limits:
     cpu: "500m"
     memory: "1Gi"
-  limits:
-    cpu: "1"
-    memory: "2Gi"
