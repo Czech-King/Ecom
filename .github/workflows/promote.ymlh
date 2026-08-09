@@ -51,8 +51,8 @@ jobs:
           kubectl rollout status deployment/product-service --timeout=5m
           kubectl get deployment product-service
           kubectl get pods
-
-  deploy-prod:
+   
+ deploy-prod:
     name: Deploy Product Service to Production
     needs: deploy-stage
     runs-on: self-hosted
