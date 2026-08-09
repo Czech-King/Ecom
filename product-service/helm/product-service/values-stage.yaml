@@ -6,8 +6,8 @@ config:
 
 resources:
   requests:
-    cpu: "100m"
-    memory: "126Mi"
+    cpu: "250m"
+    memory: "512Mi"
   limits:
-    cpu: "200m"
-    memory: "256Gi"
+    cpu: "500m"
+    memory: "1Gi"
