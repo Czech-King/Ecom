@@ -138,6 +138,7 @@ jobs:
       # - name: Import Image into k3d Cluster
       #   run: |
       #     k3d image import product-service:${{ github.sha }} -c mycluster
+      # test
 
       - name: Install Trivy
         run: |
