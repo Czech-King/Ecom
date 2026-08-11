@@ -12,7 +12,7 @@ postgres:
 
   username: postgres
 
-  password: passwords
+  password: password
 
   service:
     name: postgres
