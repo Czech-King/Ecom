@@ -4,17 +4,17 @@ config:
   dbHost: postgres
   springProfile: prod
 
-# resources:
-#   requests:
-#     cpu: "500m"
-#     memory: "1Gi"
-#   limits:
-#     cpu: "1"
-#     memory: "2Gi"
 resources:
   requests:
-    cpu: "50m"
-    memory: "128Mi"
+    cpu: "500m"
+    memory: "1Gi"
   limits:
-    cpu: "55m"
-    memory: "156Mi"
+    cpu: "1"
+    memory: "2Gi"
+# resources:
+#   requests:
+#     cpu: "50m"
+#     memory: "128Mi"
+#   limits:
+#     cpu: "55m"
+#     memory: "156Mi"
