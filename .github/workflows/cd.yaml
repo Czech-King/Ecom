@@ -72,7 +72,7 @@ jobs:
 
       - name: Deploy with Helm
         run: | 
-          helm upgrade --install product-service ./helm/product-service -f ./helm/product-service/values.yaml -f ./helm/product-service/values-prod.yaml --set image.tag=${{ github.event.workflow_run.head_sha || github.sha }} --wait --timeout 5m --atomic
+          helm upgrade --install product-service ./helm/product-service -f ./helm/product-service/values.yaml -f ./helm/product-service/values-prod.yaml --set image.tag=${{ github.event.workflow_run.head_sha || github.sha }} --wait 
           
 
 #################################################
