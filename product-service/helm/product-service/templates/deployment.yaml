@@ -28,11 +28,11 @@ spec:
           ports:
             - containerPort: {{ .Values.service.targetPort }}
 
-          # envFrom:
-          #   - configMapRef:
-          #       name: {{ include "product-service.fullname" . }}-config
-          #   - secretRef:
-          #       name: {{ include "product-service.fullname" . }}-secret
+          envFrom:
+            - configMapRef:
+                name: {{ include "product-service.fullname" . }}-config
+            - secretRef:
+                name: {{ include "product-service.fullname" . }}-secret
 
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
