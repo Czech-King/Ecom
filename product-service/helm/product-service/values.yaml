@@ -83,3 +83,9 @@ probes:
     timeoutSeconds: 2
     successThreshold: 1
     failureThreshold: 3
+canary:
+  enabled: false
+  replicas: 1
+  image:
+    repository: zukien/product-service
+    tag: ""

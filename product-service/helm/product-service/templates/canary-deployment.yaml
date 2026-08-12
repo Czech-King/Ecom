@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: product-service-canary
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: product-service-canary
+
+  template:
+    metadata:
+      labels:
+        app: product-service-canary
+
+    spec:
+      containers:
+        - name: product-service
+          image: zukien/product-service:706e18a858adaf1663e74a5fc2e0e3900bf0f96a
+          ports:
+            - containerPort: 8080
