@@ -80,4 +80,11 @@ public class ProductController {
 public InventoryResponse getInventory(@PathVariable Integer productId) {
     return productService.getInventory(productId);
 }
+
+    @GetMapping("/canary")
+    public String canary() {
+        return "Product Service - CANARY v2";
+
+}
+
 }
