@@ -1,0 +1,50 @@
+158m        Normal    Started                          pod/product-service-cd4b684bc-s59c8              Container started
+157m        Normal    Killing                          pod/product-service-cd4b684bc-s59c8              Stopping container product-service
+157m        Normal    SuccessfulDelete                 replicaset/product-service-cd4b684bc             Deleted pod: product-service-cd4b684bc-s59c8
+157m        Normal    ScalingReplicaSet                deployment/product-service                       Scaled down replica set product-service-cd4b684bc from 1 to 0
+152m        Normal    Killing                          pod/postgres-service-postgres-6c755cf5-7btvf     Stopping container postgres
+152m        Normal    Killing                          pod/product-service-854b7f9f5f-rf9c4             Stopping container product-service
+152m        Normal    SuccessfulCreate                 replicaset/postgres-service-postgres-6c755cf5    Created pod: postgres-service-postgres-6c755cf5-kx7zg
+152m        Normal    SuccessfulCreate                 replicaset/product-service-854b7f9f5f            Created pod: product-service-854b7f9f5f-wmd7w
+152m        Normal    NodeNotSchedulable               node/k3d-mycluster-server-0                      Node k3d-mycluster-server-0 status is now: NodeNotSchedulable
+31m         Normal    CertificateExpirationOK          node/k3d-mycluster-server-0                      Node and Certificate Authority certificates managed by k3s are OK
+31m         Normal    RegisteredNode                   node/k3d-mycluster-server-0                      Node k3d-mycluster-server-0 event: Registered Node k3d-mycluster-server-0 in Controller
+31m         Normal    NodePasswordValidationComplete   node/k3d-mycluster-server-0                      Deferred node password secret validation complete
+31m         Normal    Starting                         node/k3d-mycluster-server-0                      Starting kubelet.
+31m         Normal    NodeAllocatableEnforced          node/k3d-mycluster-server-0                      Updated Node Allocatable limit across pods
+31m         Normal    NodeHasNoDiskPressure            node/k3d-mycluster-server-0                      Node k3d-mycluster-server-0 status is now: NodeHasNoDiskPressure
+31m         Warning   FailedMount                      pod/product-service-854b7f9f5f-rf9c4             MountVolume.SetUp failed for volume "kube-api-access-6sn7n" : object "default"/"kube-root-ca.crt" not registered
+31m         Normal    NodeHasSufficientMemory          node/k3d-mycluster-server-0                      Node k3d-mycluster-server-0 status is now: NodeHasSufficientMemory
+31m         Warning   FailedMount                      pod/postgres-service-postgres-6c755cf5-7btvf     MountVolume.SetUp failed for volume "kube-api-access-7zs5d" : object "default"/"kube-root-ca.crt" not registered
+31m         Warning   Rebooted                         node/k3d-mycluster-server-0                      Node k3d-mycluster-server-0 has been rebooted, boot id: 3aeb71f2-455e-4bdd-9f62-47405eed5ad4
+31m         Normal    NodeHasSufficientPID             node/k3d-mycluster-server-0                      Node k3d-mycluster-server-0 status is now: NodeHasSufficientPID
+31m         Normal    Pulled                           pod/product-service-854b7f9f5f-wmd7w             Container image "zukien/product-service:f3cbf662f66d956b86404fecf8fc3ee942af0f6a" already present on machine and can be accessed by the pod
+31m         Normal    Pulled                           pod/postgres-service-postgres-6c755cf5-kx7zg     Container image "postgres:16" already present on machine and can be accessed by the pod
+31m         Normal    Created                          pod/product-service-854b7f9f5f-wmd7w             Container created
+31m         Normal    Started                          pod/product-service-854b7f9f5f-wmd7w             Container started
+31m         Normal    Created                          pod/postgres-service-postgres-6c755cf5-kx7zg     Container created
+31m         Normal    Started                          pod/postgres-service-postgres-6c755cf5-kx7zg     Container started
+30m         Warning   Unhealthy                        pod/product-service-854b7f9f5f-wmd7w             Startup probe failed: Get "http://10.42.0.233:8080/actuator/health": dial tcp 10.42.0.233:8080: connect: connection refused
+25m         Normal    ScalingReplicaSet                deployment/product-service                       Scaled up replica set product-service-5f9cf67cfd from 0 to 1
+25m         Normal    SuccessfulCreate                 replicaset/product-service-5f9cf67cfd            Created pod: product-service-5f9cf67cfd-lxbtm
+25m         Normal    Pulling                          pod/product-service-5f9cf67cfd-lxbtm             Pulling image "zukien/product-service:ebaacf1ce4ae99d12da47da9fbc34d85e370369c"
+24m         Normal    Pulled                           pod/product-service-5f9cf67cfd-lxbtm             Successfully pulled image "zukien/product-service:ebaacf1ce4ae99d12da47da9fbc34d85e370369c" in 20.599s (20.599s including waiting). Image size: 181597716 bytes.
+19m         Warning   Unhealthy                        pod/product-service-5f9cf67cfd-lxbtm             Startup probe failed: Get "http://10.42.0.240:8080/actuator/health": dial tcp 10.42.0.240:8080: connect: connection refused
+16m         Normal    Killing                          pod/product-service-5f9cf67cfd-lxbtm             Container product-service failed startup probe, will be restarted
+16m         Normal    Pulled                           pod/product-service-5f9cf67cfd-lxbtm             Container image "zukien/product-service:ebaacf1ce4ae99d12da47da9fbc34d85e370369c" already present on machine and can be accessed by the pod
+16m         Normal    Created                          pod/product-service-5f9cf67cfd-lxbtm             Container created
+16m         Normal    Started                          pod/product-service-5f9cf67cfd-lxbtm             Container started
+15m         Normal    Killing                          pod/product-service-5f9cf67cfd-lxbtm             Stopping container product-service
+15m         Normal    ScalingReplicaSet                deployment/product-service                       Scaled down replica set product-service-5f9cf67cfd from 1 to 0
+15m         Normal    SuccessfulDelete                 replicaset/product-service-5f9cf67cfd            Deleted pod: product-service-5f9cf67cfd-lxbtm
+7m24s       Normal    ScalingReplicaSet                deployment/product-service                       Scaled up replica set product-service-c5d985775 from 0 to 1
+7m23s       Normal    SuccessfulCreate                 replicaset/product-service-c5d985775             Created pod: product-service-c5d985775-nhjnz
+7m21s       Normal    Pulling                          pod/product-service-c5d985775-nhjnz              Pulling image "zukien/product-service:9e849fa9294b608348e36830d6eb7fe7b83dfea4"
+6m58s       Normal    Pulled                           pod/product-service-c5d985775-nhjnz              Successfully pulled image "zukien/product-service:9e849fa9294b608348e36830d6eb7fe7b83dfea4" in 23.086s (23.086s including waiting). Image size: 181597661 bytes.
+6m57s       Normal    Started                          pod/product-service-c5d985775-nhjnz              Container started
+6m57s       Normal    Created                          pod/product-service-c5d985775-nhjnz              Container created
+5m58s       Warning   Unhealthy                        pod/product-service-c5d985775-nhjnz              Startup probe failed: Get "http://10.42.0.241:8080/actuator/health": dial tcp 10.42.0.241:8080: connect: connection refused
+5m51s       Normal    SuccessfulDelete                 replicaset/product-service-854b7f9f5f            Deleted pod: product-service-854b7f9f5f-wmd7w
+5m51s       Warning   Unhealthy                        pod/product-service-854b7f9f5f-wmd7w             Readiness probe failed: Get "http://10.42.0.233:8080/actuator/health/readiness": dial tcp 10.42.0.233:8080: connect: connection refused
+5m51s       Normal    Killing                          pod/product-service-854b7f9f5f-wmd7w             Stopping container product-service
+5m51s       Normal    ScalingReplicaSet                deployment/product-service                       Scaled down replica set product-service-854b7f9f5f from 1 to 0
