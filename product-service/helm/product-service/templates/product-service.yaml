@@ -11,6 +11,7 @@ spec:
 
   selector:
     app: {{ include "product-service.name" . }}
+    track: stable
 
   ports:
     - port: {{ .Values.service.port }}

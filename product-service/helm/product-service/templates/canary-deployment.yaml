@@ -1,22 +1,73 @@
+{{- if .Values.canary.enabled }}
 apiVersion: apps/v1
 kind: Deployment
+
 metadata:
-  name: product-service-canary
+  name: {{ include "product-service.fullname" . }}-canary
+  labels:
+    {{- include "product-service.labels" . | nindent 4 }}
+    track: canary
+
 spec:
-  replicas: 1
+  replicas: {{ .Values.canary.replicas }}
 
   selector:
     matchLabels:
-      app: product-service-canary
+      app: {{ include "product-service.name" . }}
+      track: canary
 
   template:
     metadata:
       labels:
-        app: product-service-canary
+        app: {{ include "product-service.name" . }}
+        track: canary
 
     spec:
       containers:
         - name: product-service
-          image: zukien/product-service:706e18a858adaf1663e74a5fc2e0e3900bf0f96a
+
+          image: "{{ .Values.canary.image.repository }}:{{ .Values.canary.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+
           ports:
-            - containerPort: 8080
+            - containerPort: {{ .Values.service.targetPort }}
+
+          envFrom:
+            - configMapRef:
+                name: {{ include "product-service.fullname" . }}-config
+            - secretRef:
+                name: {{ include "product-service.fullname" . }}-secret
+
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+
+          startupProbe:
+            httpGet:
+              path: {{ .Values.probes.startup.path }}
+              port: {{ .Values.service.targetPort }}
+            initialDelaySeconds: {{ .Values.probes.startup.initialDelaySeconds }}
+            periodSeconds: {{ .Values.probes.startup.periodSeconds }}
+            timeoutSeconds: {{ .Values.probes.startup.timeoutSeconds }}
+            failureThreshold: {{ .Values.probes.startup.failureThreshold }}
+
+          livenessProbe:
+            httpGet:
+              path: {{ .Values.probes.liveness.path }}
+              port: {{ .Values.service.targetPort }}
+            initialDelaySeconds: {{ .Values.probes.liveness.initialDelaySeconds }}
+            periodSeconds: {{ .Values.probes.liveness.periodSeconds }}
+            timeoutSeconds: {{ .Values.probes.liveness.timeoutSeconds }}
+            failureThreshold: {{ .Values.probes.liveness.failureThreshold }}
+
+          readinessProbe:
+            httpGet:
+              path: {{ .Values.probes.readiness.path }}
+              port: {{ .Values.service.targetPort }}
+            initialDelaySeconds: {{ .Values.probes.readiness.initialDelaySeconds }}
+            periodSeconds: {{ .Values.probes.readiness.periodSeconds }}
+            timeoutSeconds: {{ .Values.probes.readiness.timeoutSeconds }}
+            successThreshold: {{ .Values.probes.readiness.successThreshold }}
+            failureThreshold: {{ .Values.probes.readiness.failureThreshold }}
+
+      terminationGracePeriodSeconds: 30
+{{- end }}

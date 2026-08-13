@@ -76,10 +76,10 @@ public class ProductController {
     public Product saveProduct(@RequestBody Product product) {
         return productService.saveProduct(product);
     }
-    @GetMapping("/inventory/{productId}")
-public InventoryResponse getInventory(@PathVariable Integer productId) {
-    return productService.getInventory(productId);
-}
+//     @GetMapping("/inventory/{productId}")
+// public InventoryResponse getInventory(@PathVariable Integer productId) {
+//     return productService.getInventory(productId);
+// }
 
 //    @GetMapping("/canary")
   //  public String canary() {
