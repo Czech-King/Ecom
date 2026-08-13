@@ -3,11 +3,11 @@ name: Product Service CD
 on:
   workflow_dispatch:
 
-  workflow_run:
-    workflows:
-      - Product Service CI
-    types:
-      - completed
+  # workflow_run:
+  #   workflows:
+  #     - Product Service CI
+  #   types:
+  #     - completed
 
 jobs:
   deploy:
