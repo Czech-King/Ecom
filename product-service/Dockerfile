@@ -2,10 +2,9 @@ FROM eclipse-temurin:25-jre
 
 WORKDIR /app
 
-#COPY target/product-service-0.0.1-SNAPSHOT.jar app.jar
-
 COPY target/*.jar app.jar
+COPY opentelemetry-javaagent.jar opentelemetry-javaagent.jar
 
 EXPOSE 8080
 
-ENTRYPOINT ["java","-jar","app.jar"]
+ENTRYPOINT ["java","-javaagent:/app/opentelemetry-javaagent.jar","-jar","app.jar"]
