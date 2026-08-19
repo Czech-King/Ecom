@@ -11,9 +11,9 @@ spec:
 
   selector:
     app: {{ include "product-service.name" . }}
-    track: stable
-
+    track: stable 
   ports:
-    - port: {{ .Values.service.port }}
+    - name: {{ .Values.service.name }}
+      port: {{ .Values.service.port }}
       targetPort: {{ .Values.service.targetPort }}
       protocol: TCP
