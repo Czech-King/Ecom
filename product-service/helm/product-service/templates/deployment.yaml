@@ -35,7 +35,16 @@ spec:
                 name: {{ include "product-service.fullname" . }}-config
             - secretRef:
                 name: {{ include "product-service.fullname" . }}-secret
+          env:
+            - name: OTEL_SERVICE_NAME
+              value: {{ .Values.otel.serviceName | quote }}
 
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: {{ .Values.otel.endpoint | quote }}
+
+            - name: OTEL_EXPORTER_OTLP_PROTOCOL
+              value: {{ .Values.otel.protocol | quote }}
+ 
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
 
