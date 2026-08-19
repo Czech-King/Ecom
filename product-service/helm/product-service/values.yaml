@@ -90,3 +90,8 @@ canary:
   image:
     repository: zukien/product-service
     tag: ""
+
+otel:
+  serviceName: product-service
+  endpoint: http://otel-collector-opentelemetry-collector.monitoring.svc.cluster.local:4317
+  protocol: grpc
