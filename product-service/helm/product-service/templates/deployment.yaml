@@ -35,6 +35,20 @@ spec:
                 name: {{ include "product-service.fullname" . }}-config
             - secretRef:
                 name: {{ include "product-service.fullname" . }}-secret
+
+          env:
+            - name: OTEL_SERVICE_NAME
+              value: "product-service"
+
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: "http://otel-collector:4318"
+
+            - name: OTEL_EXPORTER_OTLP_PROTOCOL
+              value: "http/protobuf"
+
+            - name: OTEL_TRACES_EXPORTER
+              value: "otlp"
+
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
 
