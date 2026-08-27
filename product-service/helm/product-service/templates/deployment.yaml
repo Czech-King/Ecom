@@ -48,7 +48,9 @@ spec:
 
             - name: OTEL_TRACES_EXPORTER
               value: "otlp"
-
+            
+            - name: OTEL_METRICS_EXPORTER
+              value: "none"
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
 
