@@ -47,7 +47,7 @@ replicaCount: 1
 
 image:
   repository: zukien/product-service
-  tag: v1
+  tag: 5273e5a61fab0a4085e5f819517849cfd064df1c
   pullPolicy: IfNotPresent
 
 service:
@@ -65,7 +65,7 @@ secret:
 probes:
   startup:
     path: /actuator/health
-    initialDelaySeconds: 60
+    initialDelaySeconds: 140
     periodSeconds: 5
     timeoutSeconds: 3
     failureThreshold: 24
