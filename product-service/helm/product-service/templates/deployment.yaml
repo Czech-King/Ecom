@@ -57,30 +57,30 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
 
-          startupProbe:
-            httpGet:
-              path: {{ .Values.probes.startup.path }}
-              port: {{ .Values.service.targetPort }}
-            initialDelaySeconds: {{ .Values.probes.startup.initialDelaySeconds }}
-            periodSeconds: {{ .Values.probes.startup.periodSeconds }}
-            timeoutSeconds: {{ .Values.probes.startup.timeoutSeconds }}
-            failureThreshold: {{ .Values.probes.startup.failureThreshold }}
+#          startupProbe:
+ #           httpGet:
+  #            path: {{ .Values.probes.startup.path }}
+   #           port: {{ .Values.service.targetPort }}
+    #        initialDelaySeconds: {{ .Values.probes.startup.initialDelaySeconds }}
+     #       periodSeconds: {{ .Values.probes.startup.periodSeconds }}
+      #      timeoutSeconds: {{ .Values.probes.startup.timeoutSeconds }}
+       #     failureThreshold: {{ .Values.probes.startup.failureThreshold }}
 
-          livenessProbe:
-            httpGet:
-              path: {{ .Values.probes.liveness.path }}
-              port: {{ .Values.service.targetPort }}
-            initialDelaySeconds: {{ .Values.probes.liveness.initialDelaySeconds }}
-            periodSeconds: {{ .Values.probes.liveness.periodSeconds }}
-            timeoutSeconds: {{ .Values.probes.liveness.timeoutSeconds }}
-            failureThreshold: {{ .Values.probes.liveness.failureThreshold }}
+        #  livenessProbe:
+         #   httpGet:
+          #    path: {{ .Values.probes.liveness.path }}
+           #   port: {{ .Values.service.targetPort }}
+            #initialDelaySeconds: {{ .Values.probes.liveness.initialDelaySeconds }}
+           # periodSeconds: {{ .Values.probes.liveness.periodSeconds }}
+           # timeoutSeconds: {{ .Values.probes.liveness.timeoutSeconds }}
+           # failureThreshold: {{ .Values.probes.liveness.failureThreshold }}
 
-          readinessProbe:
-            httpGet:
-              path: {{ .Values.probes.readiness.path }}
-              port: {{ .Values.service.targetPort }}
-            initialDelaySeconds: {{ .Values.probes.readiness.initialDelaySeconds }}
-            periodSeconds: {{ .Values.probes.readiness.periodSeconds }}
-            timeoutSeconds: {{ .Values.probes.readiness.timeoutSeconds }}
-            successThreshold: {{ .Values.probes.readiness.successThreshold }}
-            failureThreshold: {{ .Values.probes.readiness.failureThreshold }}
+         # readinessProbe:
+          #  httpGet:
+          #    path: {{ .Values.probes.readiness.path }}
+           #   port: {{ .Values.service.targetPort }}
+           # initialDelaySeconds: {{ .Values.probes.readiness.initialDelaySeconds }}
+           # periodSeconds: {{ .Values.probes.readiness.periodSeconds }}
+           # timeoutSeconds: {{ .Values.probes.readiness.timeoutSeconds }}
+           # successThreshold: {{ .Values.probes.readiness.successThreshold }}
+           # failureThreshold: {{ .Values.probes.readiness.failureThreshold }}
