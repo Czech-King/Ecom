@@ -76,9 +76,9 @@ jobs:
           -f ./helm/product-service/values.yaml \
           -f ./helm/product-service/values-prod.yaml \
           --set image.tag=${{ github.event.workflow_run.head_sha || github.sha }} \
-          --wait --timeout 10m \
-          --rollback-on-failure \
-          --cleanup-on-fail
+          # --wait --timeout 10m \
+          # --rollback-on-failure \
+          # --cleanup-on-fail
 
       #################################################
       # 6. Verify Rollout
