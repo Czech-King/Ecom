@@ -48,7 +48,7 @@ replicaCount: 1
 image:
   repository: zukien/product-service
   tag: 5273e5a61fab0a4085e5f819517849cfd064df1c
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
 
 service:
   type: ClusterIP

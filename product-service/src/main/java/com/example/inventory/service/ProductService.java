@@ -1,4 +1,5 @@
 package com.example.product.service;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -34,6 +35,12 @@ public class ProductService {
         Optional<Product> product = productRepository.findById(id);
         return product.orElse(null);
     }
+
+
+    public List<Product> getAllProducts() {
+    return productRepository.findAll();
+}
+
 
     public Product saveProduct(Product product) {
 
