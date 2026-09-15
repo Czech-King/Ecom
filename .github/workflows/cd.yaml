@@ -18,11 +18,13 @@ on:
         type: string
 
 jobs:
+
   detect-changes:
     name: Detect Changed Services
     if: >
       github.event_name == 'workflow_dispatch' ||
       github.event.workflow_run.conclusion == 'success'
+
     runs-on: ubuntu-latest
 
     outputs:
@@ -32,7 +34,8 @@ jobs:
       image_tag: ${{ steps.tag.outputs.image_tag }}
 
     steps:
-      - name: Checkout
+
+      - name: Checkout Source
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.workflow_run.head_sha || github.sha }}
@@ -49,26 +52,55 @@ jobs:
 
       - name: Detect Changed Services
         id: filter
-        uses: dorny/paths-filter@v3
-        with:
-          filters: |
-            product:
-              - 'product-service/**'
-            inventory:
-              - 'inventory-service/**'
-            frontend:
-              - 'frontend/**'
-          base: ${{ github.event.workflow_run.head_sha }}~1
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "product=true" >> "$GITHUB_OUTPUT"
+            echo "inventory=true" >> "$GITHUB_OUTPUT"
+            echo "frontend=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          SHA="${{ github.event.workflow_run.head_sha }}"
+
+          echo "Checking changed files for commit: $SHA"
+
+          git diff --name-only "${SHA}^" "$SHA" > changed-files.txt
+
+          echo "Changed files:"
+          cat changed-files.txt
+
+          if grep -q '^product-service/' changed-files.txt; then
+            echo "product=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "product=false" >> "$GITHUB_OUTPUT"
+          fi
+
+          if grep -q '^inventory-service/' changed-files.txt; then
+            echo "inventory=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "inventory=false" >> "$GITHUB_OUTPUT"
+          fi
+
+          if grep -q '^frontend/' changed-files.txt; then
+            echo "frontend=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "frontend=false" >> "$GITHUB_OUTPUT"
+          fi
+
 
   deploy-product:
     name: Deploy Product Service
     needs: detect-changes
+
     if: needs.detect-changes.outputs.product == 'true'
+
     runs-on: self-hosted
+
     environment: dev
 
     steps:
-      - name: Checkout
+
+      - name: Checkout Source
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.workflow_run.head_sha || github.sha }}
@@ -99,18 +131,30 @@ jobs:
       - name: Verify Product Deployment
         run: |
           kubectl rollout status deployment/product-service --timeout=10m
+
           kubectl get deployment product-service
+
           kubectl get pods -l app=product-service
+
+          echo "Deployed image:"
+          kubectl get deployment product-service \
+            -o jsonpath='{.spec.template.spec.containers[0].image}'
+          echo
+
 
   deploy-inventory:
     name: Deploy Inventory Service
     needs: detect-changes
+
     if: needs.detect-changes.outputs.inventory == 'true'
+
     runs-on: self-hosted
+
     environment: dev
 
     steps:
-      - name: Checkout
+
+      - name: Checkout Source
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.workflow_run.head_sha || github.sha }}
@@ -141,18 +185,30 @@ jobs:
       - name: Verify Inventory Deployment
         run: |
           kubectl rollout status deployment/inventory-service --timeout=10m
+
           kubectl get deployment inventory-service
+
           kubectl get pods -l app=inventory-service
+
+          echo "Deployed image:"
+          kubectl get deployment inventory-service \
+            -o jsonpath='{.spec.template.spec.containers[0].image}'
+          echo
+
 
   deploy-frontend:
     name: Deploy Frontend
     needs: detect-changes
+
     if: needs.detect-changes.outputs.frontend == 'true'
+
     runs-on: self-hosted
+
     environment: dev
 
     steps:
-      - name: Checkout
+
+      - name: Checkout Source
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.workflow_run.head_sha || github.sha }}
@@ -183,5 +239,12 @@ jobs:
       - name: Verify Frontend Deployment
         run: |
           kubectl rollout status deployment/frontend --timeout=10m
+
           kubectl get deployment frontend
+
           kubectl get pods -l app=frontend
+
+          echo "Deployed image:"
+          kubectl get deployment frontend \
+            -o jsonpath='{.spec.template.spec.containers[0].image}'
+          echo
