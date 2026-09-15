@@ -15,9 +15,9 @@ data:
     processors:
       batch:
 
-    exporters:
-      otlphttp/jaeger:
-        endpoint: http://jaeger:4318
+#    exporters:
+#      otlphttp/jaeger:
+#        endpoint: http://jaeger:4318
 
     service:
       pipelines:

@@ -1,6 +1,6 @@
-name: Product Service CI
-on:
+name: Ecom CI
 
+on:
   push:
     branches:
       - main
@@ -10,176 +10,87 @@ on:
     branches:
       - main
 
-
-
 jobs:
 
-  build:
+  #################################################
+  # Detect which services changed
+  #################################################
 
-    name: Build and Security Validation
+  changes:
 
+    name: Detect Changed Services
     runs-on: ubuntu-latest
 
-
-    defaults:
-      run:
-        working-directory: product-service
-
+    outputs:
+      product: ${{ steps.filter.outputs.product }}
+      inventory: ${{ steps.filter.outputs.inventory }}
+      frontend: ${{ steps.filter.outputs.frontend }}
 
     steps:
-
-
-      #################################################
-      # 1. Checkout Source Code
-      #################################################
 
       - name: Checkout Source
         uses: actions/checkout@v4
 
-
-
-      #################################################
-      # 2. Setup Java Environment
-      #################################################
-
-      - name: Setup Java 25
-        uses: actions/setup-java@v4
+      - name: Detect Changes
+        id: filter
+        uses: dorny/paths-filter@v3
         with:
-          java-version: '25'
-          distribution: 'temurin'
-          cache: maven
+          filters: |
+            product:
+              - 'product-service/**'
+
+            inventory:
+              - 'inventory-service/**'
+
+            frontend:
+              - 'frontend/**'
 
 
+  #################################################
+  # Product CI
+  #################################################
 
-      # #################################################
-      # # 3. Cache OWASP Dependency Check Database
-      # #################################################
+  product:
 
-      # - name: Cache OWASP Dependency Check Database
-      #   uses: actions/cache@v4
-      #   with:
-      #     path: ~/.dependency-check
-      #     key: dependency-check-${{ runner.os }}
-      #     restore-keys: |
-      #       dependency-check-${{ runner.os }}
+    name: Product Service CI
+    needs: changes
 
+    if: needs.changes.outputs.product == 'true'
 
+    uses: ./.github/workflows/product-ci.yml
 
-      #################################################
-      # 4. Maven Build and Unit Test
-      #################################################
-
-      - name: Maven Build and Test
-        run: mvn clean package 
+    secrets: inherit
 
 
+  #################################################
+  # Inventory CI
+  #################################################
 
-      # #################################################
-      # # 5. Unit Testing
-      # #################################################
+  inventory:
 
-      # - name: Run Unit Tests
-      #   run: mvn test
+    name: Inventory Service CI
+    needs: changes
 
+    if: needs.changes.outputs.inventory == 'true'
 
+    uses: ./.github/workflows/inventory-ci.yml
 
-      #################################################
-      # 6. OWASP Dependency Vulnerability Scan
-      #################################################
-
-      # - name: Dependency Check
-      #   run: |
-      #     mvn org.owasp:dependency-check-maven:12.1.0:check \
-      #     -DnvdApiKey=${{ secrets.NVD_API_KEY }}
-
-  # gitleaks:
-  #   name: Secret Scan
-  #   needs: build
-  #   runs-on: ubuntu-latest
-
-  #   steps:
-  #     - name: Checkout Source
-  #       uses: actions/checkout@v4
-
-  #     - name: Secret Scan - GitLeaks
-  #       uses: gitleaks/gitleaks-action@v2
-
-      #################################################
-      # 7. Secret Detection
-      #################################################
-
-      - name: Secret Scan - GitLeaks
-        uses: gitleaks/gitleaks-action@v2
-        continue-on-error: true
-
-      - name: Generate SBOM
-        run: mvn cyclonedx:makeBom
-
-      - name: Upload SBOM
-        uses: actions/upload-artifact@v4
-        with:
-          name: sbom
-          path: target/bom.json
-
-      - name: Show current directory
-        run: pwd
+    secrets: inherit
 
 
-      - name: Login Docker Hub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+  #################################################
+  # Frontend CI
+  #################################################
 
-      - name: Build Docker Image
-        run: |
-          docker build \
-            -t ${{ secrets.DOCKERHUB_USERNAME }}/product-service:${{ github.sha }} .
+  frontend:
 
-      # - name: Import Image into k3d Cluster
-      #   run: |
-      #     k3d image import product-service:${{ github.sha }} -c mycluster
-      # test
+    name: Frontend CI
+    needs: changes
 
-      - name: Install Trivy
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y wget
-          wget -qO- https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sudo sh -s -- -b /usr/local/bin
+    if: needs.changes.outputs.frontend == 'true'
 
-      - name: Scan image
-        run: |
-          trivy image \
-            --severity HIGH,CRITICAL \
-            --format table \
-            --output trivy-report.txt \
-            --exit-code 0 \
-            ${{ secrets.DOCKERHUB_USERNAME }}/product-service:${{ github.sha }}
+    uses: ./.github/workflows/frontend-ci.yml
+
+    secrets: inherit
 
 
-      - name: Check Trivy report
-        run: |
-          echo "Workspace: $GITHUB_WORKSPACE"
-          pwd
-          find $GITHUB_WORKSPACE -name "trivy*" -type f
-
-      # - name: Upload Trivy Report
-      #   if: always()
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: trivy-report
-      #     path: trivy-report.txt
-
-
-
-      - name: Push Docker Image
-        run: |
-          docker push \
-            ${{ secrets.DOCKERHUB_USERNAME }}/product-service:${{ github.sha }}
-
-
-      
-      # - name: Debug image-ref
-      #   run: |
-      #     echo "github.sha = ${{ github.sha }}"
-      #     echo "image-ref = ${{ secrets.DOCKERHUB_USERNAME }}/product-service:${{ github.sha }}"
