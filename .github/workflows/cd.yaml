@@ -1,177 +1,187 @@
-name: Product Service CD
+name: Ecom CD
 
 on:
-  workflow_dispatch:
+  workflow_run:
+    workflows:
+      - Ecom CI
+    types:
+      - completed
+    branches:
+      - main
+      - testin
 
-  # workflow_run:
-  #   workflows:
-  #     - Product Service CI
-  #   types:
-  #     - completed
+  workflow_dispatch:
+    inputs:
+      image_tag:
+        description: "Git SHA image tag to deploy"
+        required: true
+        type: string
 
 jobs:
-  deploy:
+  detect-changes:
+    name: Detect Changed Services
     if: >
       github.event_name == 'workflow_dispatch' ||
-      (github.event_name == 'workflow_run' &&
-       github.event.workflow_run.conclusion == 'success')
+      github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
 
-    name: Deploy Product Service
-    runs-on:
-      - self-hosted
-
-    environment: dev
-
-    defaults:
-      run:
-        working-directory: product-service
+    outputs:
+      product: ${{ steps.filter.outputs.product }}
+      inventory: ${{ steps.filter.outputs.inventory }}
+      frontend: ${{ steps.filter.outputs.frontend }}
+      image_tag: ${{ steps.tag.outputs.image_tag }}
 
     steps:
-      #################################################
-      # 1. Checkout Source Code
-      #################################################
-
-      - name: Checkout Source
+      - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+          fetch-depth: 2
 
-      #################################################
-      # 2. Setup Helm
-      #################################################
+      - name: Determine Image Tag
+        id: tag
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "image_tag=${{ inputs.image_tag }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "image_tag=${{ github.event.workflow_run.head_sha }}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Detect Changed Services
+        id: filter
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            product:
+              - 'product-service/**'
+            inventory:
+              - 'inventory-service/**'
+            frontend:
+              - 'frontend/**'
+          base: ${{ github.event.workflow_run.head_sha }}~1
+
+  deploy-product:
+    name: Deploy Product Service
+    needs: detect-changes
+    if: needs.detect-changes.outputs.product == 'true'
+    runs-on: self-hosted
+    environment: dev
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
 
       - name: Setup Helm
         uses: azure/setup-helm@v4
 
-      - name: Verify Helm
-        run: helm version
-
-      #################################################
-      # 3. Setup kubectl
-      #################################################
-
       - name: Setup kubectl
         uses: azure/setup-kubectl@v4
 
-      #################################################
-      # 4. Configure kubeconfig
-      #################################################
-
-      # - name: Configure kubeconfig
-      #   run: |
-      #     mkdir -p ~/.kube
-      #     cp /root/.config/k3d/kubeconfig-mycluster.yaml ~/.kube/config
-      #     chmod 600 ~/.kube/config
-
-      #################################################
-      # 5. Verify Kubernetes Connectivity
-      #################################################
-
-      - name: Verify Kubernetes Connection
+      - name: Verify Kubernetes
         run: |
           kubectl cluster-info
           kubectl get nodes
 
-      - name: Deploy with Helm
+      - name: Deploy Product Service
+        working-directory: product-service
         run: |
           helm upgrade --install product-service ./helm/product-service \
-          -f ./helm/product-service/values.yaml \
-          -f ./helm/product-service/values-prod.yaml \
-          --set image.tag=${{ github.event.workflow_run.head_sha || github.sha }} \
-          # --wait --timeout 10m \
-          # --rollback-on-failure \
-          # --cleanup-on-fail
+            -f ./helm/product-service/values.yaml \
+            -f ./helm/product-service/values-prod.yaml \
+            --set image.tag=${{ needs.detect-changes.outputs.image_tag }} \
+            --wait \
+            --timeout 10m \
+            --rollback-on-failure \
+            --cleanup-on-fail
 
-      #################################################
-      # 6. Verify Rollout
-      #################################################
-
-      - name: Verify Rollout
+      - name: Verify Product Deployment
         run: |
-          kubectl rollout status deployment/product-service
-
-      #################################################
-      # 7. Verify Deployment
-      #################################################
-
-      - name: Verify Deployment
-        run: |
+          kubectl rollout status deployment/product-service --timeout=10m
           kubectl get deployment product-service
+          kubectl get pods -l app=product-service
 
-      #################################################
-      # 8. Verify ReplicaSet
-      #################################################
+  deploy-inventory:
+    name: Deploy Inventory Service
+    needs: detect-changes
+    if: needs.detect-changes.outputs.inventory == 'true'
+    runs-on: self-hosted
+    environment: dev
 
-      - name: Verify ReplicaSets
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+
+      - name: Setup Helm
+        uses: azure/setup-helm@v4
+
+      - name: Setup kubectl
+        uses: azure/setup-kubectl@v4
+
+      - name: Verify Kubernetes
         run: |
-          kubectl get rs
+          kubectl cluster-info
+          kubectl get nodes
 
-      #################################################
-      # 9. Verify Pods
-      #################################################
-
-      - name: Verify Pods
+      - name: Deploy Inventory Service
+        working-directory: inventory-service
         run: |
-          kubectl get pods -o wide
+          helm upgrade --install inventory-service ./helm/inventory-service \
+            -f ./helm/inventory-service/values.yaml \
+            -f ./helm/inventory-service/values-prod.yaml \
+            --set image.tag=${{ needs.detect-changes.outputs.image_tag }} \
+            --wait \
+            --timeout 10m \
+            --rollback-on-failure \
+            --cleanup-on-fail
 
-      #################################################
-      # 10. Verify Deployed Image
-      #################################################
-
-      - name: Verify Deployed Image
+      - name: Verify Inventory Deployment
         run: |
-          echo "Expected Image:"
-          echo "${{ secrets.DOCKERHUB_USERNAME }}/product-service:${{ github.sha }}"
-          echo
+          kubectl rollout status deployment/inventory-service --timeout=10m
+          kubectl get deployment inventory-service
+          kubectl get pods -l app=inventory-service
 
-          echo "Running Image:"
-          kubectl get deployment product-service \
-            -o=jsonpath='{.spec.template.spec.containers[0].image}'
-          echo
+  deploy-frontend:
+    name: Deploy Frontend
+    needs: detect-changes
+    if: needs.detect-changes.outputs.frontend == 'true'
+    runs-on: self-hosted
+    environment: dev
 
-      #################################################
-      # 11. Recent Kubernetes Events
-      #################################################
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
 
-      - name: Recent Kubernetes Events
-        if: always()
+      - name: Setup Helm
+        uses: azure/setup-helm@v4
+
+      - name: Setup kubectl
+        uses: azure/setup-kubectl@v4
+
+      - name: Verify Kubernetes
         run: |
-          kubectl get events \
-            --sort-by=.metadata.creationTimestamp | tail -20
+          kubectl cluster-info
+          kubectl get nodes
 
-      #################################################
-      # 12. Application Logs
-      #################################################
-
-      - name: Application Logs
-        if: always()
+      - name: Deploy Frontend
+        working-directory: frontend
         run: |
-          kubectl logs deployment/product-service --tail=50
+          helm upgrade --install frontend ./helm/frontend \
+            -f ./helm/frontend/values.yaml \
+            -f ./helm/frontend/values-prod.yaml \
+            --set image.tag=${{ needs.detect-changes.outputs.image_tag }} \
+            --wait \
+            --timeout 10m \
+            --rollback-on-failure \
+            --cleanup-on-fail
 
-      #################################################
-      # 13. Health Check
-      #################################################
-
-      # - name: Application Health Check
-      #   run: |
-      #     kubectl port-forward service/product-service 8080:8080 >/tmp/port-forward.log 2>&1 &
-      #     PF_PID=$!
-
-      #     sleep 5
-
-      #     curl --fail http://localhost:8080/actuator/health
-
-      #     kill $PF_PID
-
-      #################################################
-      # 14. Smoke Test
-      #################################################
-
-      # - name: Smoke Test
-      #   run: |
-      #     kubectl port-forward service/product-service 8080:8080 >/tmp/port-forward.log 2>&1 &
-      #     PF_PID=$!
-
-      #     sleep 5
-
-      #     curl --fail http://localhost:8080/actuator/health
-
-      #     kill $PF_PID
+      - name: Verify Frontend Deployment
+        run: |
+          kubectl rollout status deployment/frontend --timeout=10m
+          kubectl get deployment frontend
+          kubectl get pods -l app=frontend
