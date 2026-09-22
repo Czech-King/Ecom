@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: inventory-service
+  repository: zukien/inventory-service
   pullPolicy: IfNotPresent
   tag: "1.1"
 
