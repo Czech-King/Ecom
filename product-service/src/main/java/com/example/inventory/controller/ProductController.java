@@ -1,4 +1,3 @@
-```java
 package com.example.product.controller;
 
 import java.util.List;
@@ -39,5 +38,4 @@ public class ProductController {
         return productService.saveProduct(product);
     }
 }
-```
 
